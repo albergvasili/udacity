@@ -45,6 +45,7 @@ Porphyra:
 Back to Celadon:
 
 If Valiant Explorer of the Soul:
+
 	Do you have the Crystals? (Y), (N)
 	Yes: If Crystals/Bag: Show them ? -> Yes: If bag. Traitor!
 						  If Crystals. Do ritual.
