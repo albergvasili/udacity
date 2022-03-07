@@ -5,15 +5,15 @@ progress = []
 
 def printi(text):
     print(text)
-    # time.sleep()
+    time.sleep(1)
 
 
 def intro():
     printi("The mighty Celadon grabbed the old mysterious book.")
     printi("He deliberately opened a random page and read:")
-    printi("When the Moon covered the Sun, the Valiant Explorer "
+    printi("'When the Moon covered the Sun, the Valiant Explorer "
            "of the Soul gathered three mystic crystals and presented "
-           "them to his master before midnight.")
+           "them to his master before midnight.'")
     printi("Celadon stared at the infinite space in front of him.")
     printi("Suddenly, he closed the book and looked at you:\n")
     valiant_question()
@@ -28,22 +28,31 @@ def valiant_question():
         printi("Find the three crystals before midnight!'\n")
         printi("You walk out of the tent and look at the bright blue sky.")
         progress.append("Valiant")
+        Naranya()
 
     elif valiant_explorer == "n":
         printi("'Coward! Leave this tent and never come back!'\n")
         printi("You run out of the tent and look at the bright blue sky.")
         progress.append("Coward")
+        Naranya()
 # "you run out of the tent" -> repeats twice.
     else:
         printi("'Do not run away from your destiny!'\n")
         valiant_question()
 
+
 # Note to future self: Diverge chapters here.
 
-    printi("You follow the long path to Naranya and enter through the gates")
-    printi("You are surrounded by small white houses with orange roofs "
-           "on both sides of the main road\n")
 
+def Naranya():
+    printi("You follow the long path to Naranya and enter through the gates.")
+    printi("You are surrounded by small white houses with orange roofs "
+           "on both sides of the main road.\n")
+    Naranya_knock_road()
+
+
+
+def Naranya_knock_road():
     printi("What would you like to do:")
     knock_or_road = input("Knock on a random door. (K)\n"
                           "Or follow the main road. (R) ").lower()
@@ -51,39 +60,50 @@ def valiant_question():
     if knock_or_road == "k":
         printi("You knock on a random door. Character answers.")
         printi("She looks at you with curiosity")
-    # New function K??
         printi("What do you do?")
         villager_talk = input("Talk about mystic crystals. (C)\n"
                               "Or ask for water. (W)\n ").lower()
-
-        if villager_talk == "c":
-            printi("'CRYSTALS! Do NOT talk to me about Crystals!"
-                   " Are you insane!'")
-            printi("She slams the door. The people around stare at you.")
-            progress.append("Kicked")
-
-        elif villager_talk == "w":
-            printi("'Here is some water, poor wanderer.'")
-            printi("'You must be coming from the dark forest of Verdiul...")
-            printi("'They say the dark wizard of oblivion lives there.'")
-            progress.append("Water")
-
-        else:
-            printi("A fly buzzes in your ear.")
-            # Random messages for elses!
+        villager_answer(villager_talk)
 
     elif knock_or_road != "k" and knock_or_road != "r":
-        printi("A black cat approaches, meows at you, and leaves")
-        # start function to ask again
+        printi("A black cat approaches, meows at you, and leaves") # Random
+        Naranya_knock_road()
 
-printi("You follow the road to the main plaza.")
-printi("A young man is reading sitting by a tree nearby")
-printi("There is a tall statue of a woman holding a small shiny object...")
-printi("It looks like a crystal.")
-printi("What would you like to do:")
+    else:
+        follow_road()
+
+
+
+def villager_answer(villager_talk):
+    if villager_talk == "c":
+        printi("'CRYSTALS! Do NOT talk to me about Crystals!"
+               " Are you insane!'")
+        printi("She slams the door. The people around stare at you.")
+        progress.append("Kicked")
+
+    elif villager_talk == "w":
+        printi("'Here is some water, poor wanderer.'")
+        printi("'You must be coming from the dark forest of Verdiul...")
+        printi("'They say the dark wizard of oblivion lives there.'")
+        progress.append("Water")
+
+    else:
+        printi("A fly buzzes in your ear.")
+        # Random messages for elses!
+        
+    follow_road()
+
+
+def follow_road():
+    printi("You follow the road to the main plaza.")
+    printi("A young man is reading sitting by a tree nearby")
+    printi("There is a tall statue of a woman holding a small "
+           "shiny object...")
+    printi("It looks like a crystal.")
 
 
 def plaza():
+    printi("What would you like to do:")
     plaza_choice = input("Approach young man. (Y)\n"
                          "Or steal the shiny object. (S)\n").lower()
 
@@ -164,10 +184,10 @@ def plaza():
             printi("Time'\n")
             printi("'What brings you to this town, stranger?'")
             your_intention = input("Reveal your intentions about the "
-                                   "crystal (C)\n")
+                                   "crystal (C)\n"
                                    "Or you are just another wanderer "
                                    "(W)\n").lower()
-            if your_intention = "c":
+            if your_intention == "c":
                 printi("'Oh noble stranger, let me help you in your quest.")
                 printi("For years I have observed this plaza.")
                 printi("I know how to avoid the spell!")
@@ -184,11 +204,11 @@ def plaza():
                                       "Or do you help the young man? "
                                       "(H)\n").lower()
                 
-                if take_or_leave = "t":
+                if take_or_leave == "t":
                     printi("You take the bag and find a way out of the town.")
                     progress.append("Bag")
 
-                elif take_or_leave = "h":
+                elif take_or_leave == "h":
                     printi("You push one of the guards, and the young man "
                            "manages to escape.")
                     printi("You try to follow him but some guards appear "
@@ -208,13 +228,40 @@ def plaza():
                        "the main road.")
                 # Go back to plaza
 
+
 def Celadon():
     printi("You are back at Celadon's tent")
     if "Valiant" in progress:
-       crystal_master = input("'Valiant Explorer! Do you come back to "
-                              "offer the crystal to your master?'"
-                              "(Y)/(N)").lower()
+        crystal_valiant = input("'Valiant Explorer! Do you come back to "
+                               "offer the crystal to your master?'"
+                               "(Y)/(N)").lower()
+        if crystal_master == "y":
+            if "Bag" in progress:
+                #Traitor
+           #else:
+                #Mission accomplished
+        #elif crystal_master == "n":
+                printi("'Hurry up! There is no time to waste!")
+        #else:
+            #random
+    if "Coward" in progress:
+        printi("'Coward! How dare you come to mighty Celadon's tent?'")
+        printi("Celadon threatens you with a sword")
+        crystal_coward = input("Do you give Celadon the crystal? (C)"
+                               "Or do you run away? (R)").lower()
+        if crystal_coward == "c":
+            printi("Celadon cannot believe it! You are not a coward "
+                   "after all")
+            #Mission accomplished
+        #elif crystal_coward == "r":
+            #printi("You attempt to run away but the rug where you stand "
+                   #"becomes a hollow surface.")
+            #printi("You fall in a never ending dark and cold tunnel until "
+                   #"your body vanishes".)
+        
+            #randomelse
+
+            
             
  
-plaza()
-
+Naranya_knock_road()
