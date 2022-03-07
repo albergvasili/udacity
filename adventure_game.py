@@ -1,6 +1,5 @@
 import time
-
-progress = []
+import sys
 
 
 def printi(text):
@@ -8,93 +7,109 @@ def printi(text):
     time.sleep(1)
 
 
-def intro():
+def intro(progress):
     printi("The mighty Celadon grabbed the old mysterious book.")
     printi("He deliberately opened a random page and read:")
     printi("'When the Moon covered the Sun, the Valiant Explorer "
-           "of the Soul gathered three mystic crystals and presented "
-           "them to his master before midnight.'")
+           "of the Soul gathered the mystic crystal and presented "
+           "it to his master before midnight.'\n")
     printi("Celadon stared at the infinite space in front of him.")
-    printi("Suddenly, he closed the book and looked at you:\n")
-    valiant_question()
+    printi("He suddendly closed the book and looked at you:\n")
+    valiant_question(progress)
 
 
-def valiant_question():
+def valiant_question(progress):
     valiant_explorer = input("'Are you the Valiant Explorer of the Soul?'"
                              " (Y)/(N)").lower()
 
     if valiant_explorer == "y":
         printi("'Indeed! There is no time to waste...")
-        printi("Find the three crystals before midnight!'\n")
+        printi("Find the crystal before midnight!'\n")
         printi("You walk out of the tent and look at the bright blue sky.")
         progress.append("Valiant")
-        Naranya()
+        path(progress)
 
     elif valiant_explorer == "n":
         printi("'Coward! Leave this tent and never come back!'\n")
         printi("You run out of the tent and look at the bright blue sky.")
         progress.append("Coward")
-        Naranya()
-# "you run out of the tent" -> repeats twice.
+        path(progress)        
+ 
     else:
         printi("'Do not run away from your destiny!'\n")
-        valiant_question()
+        valiant_question(progress)
 
 
 # Note to future self: Diverge chapters here.
 
 
-def Naranya():
+def path(progress):
+    
+    if "Bag" in progress:
+        printi("You feel an ominous spirit surrounding Celadon's dark "
+               "and massive tent.\n")
+        Celadon(progress)
+    
+    if "Crystal" in progress:
+        printi("Celadon's massive tent makes you feel relieved")
+
+    else:
+        printi("The beautiful landscape of the Verdiul forest is divided "
+               "by the path that leads to Naranya.\n")
+        Naranya(progress)
+
+
+def Naranya(progress):
     printi("You follow the long path to Naranya and enter through the gates.")
     printi("You are surrounded by small white houses with orange roofs "
            "on both sides of the main road.\n")
-    Naranya_knock_road()
+    Naranya_knock_road(progress)
 
 
 
-def Naranya_knock_road():
+def Naranya_knock_road(progress):
     printi("What would you like to do:")
     knock_or_road = input("Knock on a random door. (K)\n"
                           "Or follow the main road. (R)").lower()
 
     if knock_or_road == "k":
         printi("You knock on a random door. Character answers.")
-        printi("She looks at you with curiosity")
+        printi("She looks at you with curiosity.")
         printi("What do you do?")
         villager_talk = input("Talk about mystic crystals. (C)\n"
                               "Or ask for water. (W)\n ").lower()
-        villager_answer(villager_talk)
+        villager_answer(villager_talk, progress)
 
     elif knock_or_road != "k" and knock_or_road != "r":
-        printi("A black cat approaches, meows at you, and leaves") # Random
-        Naranya_knock_road()
+        printi("A black cat approaches, meows at you, and leaves.") # Random
+        Naranya_knock_road(progress)
 
     else:
-        follow_road()
+        follow_road(progress)
 
 
 
-def villager_answer(villager_talk):
+def villager_answer(villager_talk, progress):
     if villager_talk == "c":
         printi("'CRYSTALS! Do NOT talk to me about Crystals!"
-               " Are you insane!'")
-        printi("She slams the door. The people around stare at you.")
+               " Are you insane!'\n")
+        printi("She slams the door. The people around stare at you.\n")
         progress.append("Kicked")
 
     elif villager_talk == "w":
         printi("'Here is some water, poor wanderer.'")
         printi("'You must be coming from the dark forest of Verdiul...")
-        printi("'They say the dark wizard of oblivion lives there.'")
+        printi("'They say the dark wizard of oblivion lives there.'\n")
         progress.append("Water")
 
     else:
         printi("A fly buzzes in your ear.")
         # Random messages for elses!
         
-    follow_road()
+    follow_road(progress)
 
 
-def follow_road():
+def follow_road(progress):
     printi("You follow the road to the main plaza.")
     printi("A young man is reading sitting by a tree nearby.")
     printi("There is a tall statue of a woman holding a small "
@@ -132,17 +147,21 @@ def plaza_steal(progress):
 
 
 def plaza_alley(progress):    
-    if "Water" or "Kicked" in progress:
-        printi("The villager is in front of you.")
+    if "Water" in progress:
+        printi("The friendly villager is walking in front of you.")
         plaza_alley_villager()
+
+    if "Kicked" in progress:
+        printi("The villager is standing in the middle of the alley, "
+               "hands on her hips. She is still mad at you.")
 
     else:
         plaza_alley_death()
 
 
-def plaza_alley_villager():
+def plaza_alley_villager(progress):
     alley = input("Do you run back to the plaza. (B)\n"
-    "Or do you ask the villager for help. (H)\n").lower()
+                  "Or do you ask the villager for help. (H)\n").lower()
 
     if alley == "b":
         printi("You turn back and stop. The guards are getting close.")
@@ -157,7 +176,7 @@ def plaza_alley_villager():
 
     else:
         printi("The narrator gives you a threatening look")
-        plaza_alley_villager()
+        plaza_alley_villager(progress)
 
 
 def plaza_alley_death():
@@ -169,10 +188,11 @@ def plaza_alley_death():
     printi("You look up.")
     printi("The moon gets close to the sun as your life gets " 
            "eclipsed by the darkness.")
-    #game over
+    play_again() 
 
 
 def plaza_alley_villager_help(progress):
+
     if "Water" in progress:
         printi("The villager recognizes you and grabs your hand.")
         printi("She guides you through the alleys and takes you "
@@ -182,7 +202,7 @@ def plaza_alley_villager_help(progress):
     else:
         printi("The villager starts yelling and tackles you.")
         printi("The guards arrive. You get arrested.")
-        # game over
+        play_again() 
 
 
 def plaza_talk(progress):
@@ -199,7 +219,7 @@ def plaza_talk(progress):
         printi("I say the statue can only sense some weight, "
                " and that the cystal could be easily replaced "
                "with a small object... like that rock!'")
-        printi("'That's just me saying, anyways.'")
+        printi("'That's just me saying, anyways.'\n")
         progress.append("Rock")
         printi("The young man grabs his belongings and walk towards "
                "the main road.")
@@ -215,7 +235,7 @@ def plaza_talk(progress):
         printi("From successive chains")
         printi("To return")
         printi("Time'\n")
-        printi("'What brings you to this town, stranger?'")
+        printi("'What brings you to this town, stranger?'\n")
         plaza_talk_intention(progress)
 
 
@@ -241,7 +261,7 @@ def plaza_talk_intention(progress):
 
     elif your_intention == "w":
         printi("'I will give you some good advice:'")
-        printi("'Advice'") # Add advice
+        printi("'Advice'\n") # Add advice
         printi("The young man grabs his belongings and walk towards "
                "the main road.")
         printi("You hear the voice of the crystal calling you.")
@@ -256,6 +276,7 @@ def plaza_talk_intention_bag(progress):
     if take_or_leave == "t":
         printi("You take the bag and find a way out of the town.")
         progress.append("Bag")
+        path(progress)
 
     elif take_or_leave == "h":
         printi("You push one of the guards, and the young man "
@@ -269,37 +290,101 @@ def plaza_talk_intention_bag(progress):
         printi("You escape the prison and leave the town "
                "without being spotted.")
         progress.append("Crystal")
+        path(progress)
 
 
-def Celadon():
-    printi("You are back at Celadon's tent")
+def Celadon(progress):
+    printi("You go inside. Celadon is standing in front of you.")
+    
     if "Valiant" in progress:
-        crystal_valiant = input("'Valiant Explorer! Do you come back to "
-                               "offer the crystal to your master?'"
-                               "(Y)/(N)").lower()
-        if crystal_master == "y":
-            if "Bag" in progress:
-                #Traitor
-           #else:
-                #Mission accomplished
-        #elif crystal_master == "n":
-                printi("'Hurry up! There is no time to waste!")
-        #else:
-            #random
+        Celadon_valiant(progress)
+
     if "Coward" in progress:
-        printi("'Coward! How dare you come to mighty Celadon's tent?'")
-        printi("Celadon threatens you with a sword")
-        crystal_coward = input("Do you give Celadon the crystal? (C)"
-                               "Or do you run away? (R)").lower()
-        if crystal_coward == "c":
-            printi("Celadon cannot believe it! You are not a coward "
-                   "after all")
-            #Mission accomplished
-        #elif crystal_coward == "r":
-            #printi("You attempt to run away but the rug where you stand "
-                   #"becomes a hollow surface.")
-            #printi("You fall in a never ending dark and cold tunnel until "
-                   #"your body vanishes".)
+        Celadon_coward(progress)
+
+
+def Celadon_valiant(progress):
+    crystal_valiant = input("'Valiant Explorer! Do you come back to "
+                           "offer the crystal to your master?'"
+                           "(Y)/(N)\n").lower()
+    
+    if crystal_valiant == "y":
+        bag_or_crystal(progress)
+
+    elif crystal_valiant == "n":
+        printi("'Hurry up! There is no time to waste!'\n")
+        path(progress)
+
+    else:
+        printi("random") # random
+        Celadon_valiant(progress)
+
+
+def Celadon_coward(progress):
+
+    printi("'Coward! How dare you come to mighty Celadon's tent?'\n")
+    printi("Celadon threatens you with his staff")
+    crystal_coward = input("Do you give Celadon the crystal? (C)\n"
+                           "Or do you run away? (R)").lower()
+    
+    if crystal_coward == "c":
+        bag_or_crystal(progress)
+
+    elif crystal_coward == "r":
+       run_away()
+
+    else:
+        printi("random") # random
+        Celadon_coward(progress)
+
+
+def bag_or_crystal(progress):
+
+    if "Bag" in progress:
+        printi("You proudly hand the bag to Celadon and start imagining "
+               "your great reward, and many years of prosperity.")
+        printi("Celadon grabs the crystal inside the bag and present it "
+               "to you.")
+        printi("But it's not a crystal! It's just a rock!")
+        printi("The young man must have replaced it in the commotion.")
+        printi("Celadon looks furious. He draws his sword to attack you")
+        run_away()
         
-            #randomelse
-plaza_talk_intention_bag(progress)
+    elif "Crystal" in progress:
+        mission_accomplished()
+
+
+def run_away():
+
+        printi("You attempt to run away but the rug where you stand "
+               "becomes a hollow surface.")
+        printi("You fall in a never ending dark and cold tunnel until "
+               "your body vanishes.")
+        play_again()
+
+
+def mission_accomplished():
+    printi("You hand the crystal to your Master.")
+    printi("'Wonderful! You really are a valiant explorer after all!'\n")
+    printi("Congratulations! You won!")
+    play_again()
+
+
+def play_again():
+    restart = input("Would you like to play again? (Y)/(N)\n").lower()
+    
+    if restart == "y":
+        play_game()
+
+    elif restart == "n":
+       sys.exit()
+
+    else:
+       play_again() 
+
+
+def play_game():
+    progress = []
+    intro(progress)
+
+play_game()
