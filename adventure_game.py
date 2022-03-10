@@ -1,5 +1,6 @@
 import time
 import sys
+import random
 
 
 def printi(text):
@@ -36,7 +37,8 @@ def valiant_question(progress):
         path(progress)        
  
     else:
-        printi("'Do not run away from your destiny!'\n")
+        #printi("'Do not run away from your destiny!'\n")
+        print(random.choice(random_else))        
         valiant_question(progress)
 
 
@@ -175,7 +177,7 @@ def plaza_alley_villager(progress):
         plaza_alley_villager_help(progress)
 
     else:
-        printi("The narrator gives you a threatening look")
+        printi("The narrator gives you a threatening look")# random
         plaza_alley_villager(progress)
 
 
@@ -387,4 +389,12 @@ def play_game():
     progress = []
     intro(progress)
 
+
+random_else = ["A black cat approaches, meows at you, and leaves.",
+               "A fly buzzes in your ear.", "You feel a bird poop landing on "
+               "your shoulder.", "A rude kid throws a rotten egg at you and "
+               "runs away.", "The narrator gives you a threatening look.",
+               "You hear Celadon's voice in your head: 'Don't run away "
+               "from your destiny!'"]
+rand
 play_game()
