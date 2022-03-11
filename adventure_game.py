@@ -1,6 +1,6 @@
+import phrases
 import time
 import sys
-import random
 
 
 def printi(text):
@@ -38,7 +38,6 @@ def valiant_question(progress):
 
     else:
         printi("'Do not run away from your destiny!'\n")
-        # print(random.choice(random_else))
         valiant_question(progress)
 
 
@@ -53,7 +52,7 @@ def path(progress):
         Celadon(progress)
 
     if "Crystal" in progress:
-        printi("Celadon's massive tent makes you feel relieved")
+        printi("Celadon's massive tent makes you feel relieved.\n")
         Celadon(progress)
 
     else:
@@ -78,11 +77,13 @@ def Naranya_knock_road(progress):
         printi("You knock on a random door. An old woman answers.")
         printi("She looks at you with curiosity.")
         printi("What do you do?")
+        # Check bug with villager_answer else. New function here!
         villager_talk = input("Talk about mystic crystals. (C)\n"
                               "Or ask for water. (W)\n ").lower()
         villager_answer(villager_talk, progress)
 
     elif knock_or_road != "k" and knock_or_road != "r":
+        phrases.wronganswer()
         Naranya_knock_road(progress)
 
     else:
@@ -95,18 +96,19 @@ def villager_answer(villager_talk, progress):
                " Are you insane!'\n")
         printi("She slams the door. The people around stare at you.\n")
         progress.append("Kicked")
+        follow_road(progress)
 
     elif villager_talk == "w":
         printi("'Here is some water, poor wanderer.'")
         printi("'You must be coming from the dark forest of Verdiul...")
         printi("'They say the dark wizard of oblivion lives there.'\n")
         progress.append("Water")
+        follow_road(progress)
 
     else:
-        printi("A fly buzzes in your ear.")
-        # Random messages for elses!
+        phrases.wronganswer()
+        villager_answer(villager_talk, progress)
 
-    follow_road(progress)
 
 
 def follow_road(progress):
@@ -132,7 +134,8 @@ def plaza(progress):
         plaza_talk(progress)
 
     else:
-        printi("random")  # add random
+        phrases.wronganswer()
+        plaza(progress)
 
 
 def plaza_steal(progress):
@@ -262,11 +265,15 @@ def plaza_talk_intention(progress):
 
     elif your_intention == "w":
         printi("'I will give you some good advice:'")
-        printi("'Advice'\n")  # Add advice
+        phrases.advice()
         printi("The young man grabs his belongings and walk towards "
                "the main road.")
         printi("You hear the voice of the crystal calling you.")
         plaza_steal(progress)
+
+    else:
+        phrases.wronganswer()
+        plaza_talk_intention(progress)
 
 
 def plaza_talk_intention_bag(progress):
@@ -293,6 +300,10 @@ def plaza_talk_intention_bag(progress):
         progress.append("Crystal")
         path(progress)
 
+    else:
+        phrases.wronganswer()
+        plaza.talk_intention_bag(progress)
+
 
 def Celadon(progress):
     printi("You go inside. Celadon is standing in front of you.")
@@ -317,7 +328,7 @@ def Celadon_valiant(progress):
         path(progress)
 
     else:
-        printi("random")  # random
+        phrases.wronganswer()
         Celadon_valiant(progress)
 
 
@@ -335,7 +346,7 @@ def Celadon_coward(progress):
         run_away()
 
     else:
-        printi("random")  # random
+        phrases.wronganswer()
         Celadon_coward(progress)
 
 
@@ -388,14 +399,5 @@ def play_game():
     progress = []
     intro(progress)
 
-
-random_list = ["A black cat approaches, meows at you, and leaves.",
-               "A fly buzzes in your ear.", "You feel a bird poop landing on "
-               "your shoulder.", "A rude kid throws a rotten egg at you and "
-               "runs away.", "The narrator gives you a threatening look.",
-               "You hear Celadon's voice in your head: 'Don't run away "
-               "from your destiny!'"]
-random_else = random.choice(random_list)
-# printi(random_else)
 
 play_game()
