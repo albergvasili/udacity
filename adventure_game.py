@@ -5,7 +5,7 @@ import sys
 
 def printi(text):
     print(text)
-    # time.sleep(1)
+    time.sleep(2)
 
 
 def intro(progress):
@@ -41,9 +41,6 @@ def valiant_question(progress):
         valiant_question(progress)
 
 
-# Note to future self: Diverge chapters here.
-
-
 def path(progress):
 
     if "Bag" in progress:
@@ -71,26 +68,26 @@ def Naranya(progress):
 def Naranya_knock_road(progress):
     printi("What would you like to do:")
     knock_or_road = input("Knock on a random door. (K)\n"
-                          "Or follow the main road. (R)").lower()
+                          "Or follow the main road. (R)\n").lower()
 
     if knock_or_road == "k":
         printi("You knock on a random door. An old woman answers.")
         printi("She looks at you with curiosity.")
         printi("What do you do?")
-        # Check bug with villager_answer else. New function here!
-        villager_talk = input("Talk about mystic crystals. (C)\n"
-                              "Or ask for water. (W)\n ").lower()
-        villager_answer(villager_talk, progress)
+        villager_answer(progress)
 
-    elif knock_or_road != "k" and knock_or_road != "r":
+    elif knock_or_road == "r":
+        follow_road(progress)
+
+    else:
         phrases.wronganswer()
         Naranya_knock_road(progress)
 
-    else:
-        follow_road(progress)
 
+def villager_answer(progress):
+    villager_talk = input("Talk about mystic crystals. (C)\n"
+                          "Or ask for water. (W)\n").lower()
 
-def villager_answer(villager_talk, progress):
     if villager_talk == "c":
         printi("'CRYSTALS! Do NOT talk to me about Crystals!"
                " Are you insane!'\n")
@@ -100,15 +97,15 @@ def villager_answer(villager_talk, progress):
 
     elif villager_talk == "w":
         printi("'Here is some water, poor wanderer.'")
-        printi("'You must be coming from the dark forest of Verdiul...")
-        printi("'They say the dark wizard of oblivion lives there.'\n")
+        printi("'You must be coming from the dark forest of Verdiul...'")
+        printi("'They say the dark wizard of oblivion lives there.'")
+        phrases.advice()
         progress.append("Water")
         follow_road(progress)
 
     else:
         phrases.wronganswer()
-        villager_answer(villager_talk, progress)
-
+        villager_answer(progress)
 
 
 def follow_road(progress):
@@ -242,6 +239,10 @@ def plaza_talk(progress):
         printi("'What brings you to this town, stranger?'\n")
         plaza_talk_intention(progress)
 
+    else:
+        phrases.wronganswer()
+        plaza_talk(progress)
+
 
 def plaza_talk_intention(progress):
     your_intention = input("Reveal your intentions about the "
@@ -337,7 +338,7 @@ def Celadon_coward(progress):
     printi("'Coward! How dare you come to mighty Celadon's tent?'\n")
     printi("Celadon threatens you with his staff")
     crystal_coward = input("Do you give Celadon the crystal? (C)\n"
-                           "Or do you run away? (R)").lower()
+                           "Or do you run away? (R)\n").lower()
 
     if crystal_coward == "c":
         bag_or_crystal(progress)
