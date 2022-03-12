@@ -148,11 +148,11 @@ def plaza_steal(progress):
 
 def plaza_alley(progress):
     if "Water" in progress:
-        printi("The friendly villager is walking in front of you.")
+        printi("The friendly woman that gave you water is in front of you.")
         plaza_alley_villager(progress)
 
     if "Kicked" in progress:
-        printi("The villager is standing in the middle of the alley, "
+        printi("The old woman is standing in the middle of the alley, "
                "hands on her hips. She is still mad at you.")
         plaza_alley_villager(progress)
 
@@ -401,4 +401,5 @@ def play_game():
     intro(progress)
 
 
-play_game()
+if __name__ == '__main__':
+    play_game()
