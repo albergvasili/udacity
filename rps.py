@@ -28,8 +28,17 @@ class RandomPlayer(Player):
     def move(self):
         return random.choice(moves)
 
+
 class HumanPlayer(Player):
-    pass
+
+
+    def move(self):
+        self.moving = input("Rock, paper, scissors? > ").lower()
+        if self.moving in moves: 
+            return self.moving 
+
+        else:
+            self.move()
 
 class Game:
 
@@ -37,6 +46,7 @@ class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
+        self.round_count = 0
 
 
     def score_check(self, move1, move2):
@@ -51,9 +61,13 @@ class Game:
         print("\tScore: " + str(self.p1.count) + " - " + str(self.p2.count)
               + "\n")
 
+
     def play_round(self):
+        self.round_count += 1
+        rounds = self.round_count
         move1 = self.p1.move()
         move2 = self.p2.move()
+        print(f"\nRound {rounds}:")
         print(f"Player1: {move1}\tPlayer2: {move2}")
         self.score_check(move1, move2)
         self.p1.learn(move1, move2)
@@ -63,11 +77,10 @@ class Game:
     def play_game(self):
         print("Game start!")
         for round in range(3):
-            print(f"Round {round}:")
             self.play_round()
         print("Game over!")
 
 
 if __name__ == '__main__':
-    game = Game(RandomPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), RandomPlayer())
     game.play_game()
