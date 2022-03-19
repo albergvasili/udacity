@@ -1,6 +1,11 @@
+import random
 moves = ['rock', 'paper', 'scissors']
 
 class Player:
+
+
+    def __init__(self):
+        self.count = 0
 
 
     def move(self):
@@ -17,6 +22,15 @@ class Player:
                 (one == 'paper' and two == 'rock' ))
 
 
+class RandomPlayer(Player):
+
+
+    def move(self):
+        return random.choice(moves)
+
+class HumanPlayer(Player):
+    pass
+
 class Game:
 
 
@@ -25,10 +39,23 @@ class Game:
         self.p2 = p2
 
 
+    def score_check(self, move1, move2):
+        score = Player.beats(move1, move2)
+
+        if score == True:
+            self.p1.count += 1
+
+        elif score == False:
+            self.p2.count += 1
+
+        print("\tScore: " + str(self.p1.count) + " - " + str(self.p2.count)
+              + "\n")
+
     def play_round(self):
         move1 = self.p1.move()
         move2 = self.p2.move()
-        print(f"Player 1: {move1} Player2: {move2}")
+        print(f"Player1: {move1}\tPlayer2: {move2}")
+        self.score_check(move1, move2)
         self.p1.learn(move1, move2)
         self.p2.learn(move2,move1)
 
@@ -42,5 +69,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(Player(), Player())
+    game = Game(RandomPlayer(), RandomPlayer())
     game.play_game()
