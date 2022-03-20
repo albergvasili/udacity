@@ -113,6 +113,7 @@ class Game:
 
     def play_game(self):
         print("Game start!")
+        print(computer_player)
         for round in range(10):
             self.play_round()
         self.winner()
@@ -120,5 +121,7 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), CyclePlayer())
+    computer_classes = (Player(), RandomPlayer(), ReflectPlayer(), CyclePlayer())
+    computer_player = random.choice(computer_classes)
+    game = Game(HumanPlayer(), computer_player)
     game.play_game()
