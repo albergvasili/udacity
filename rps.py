@@ -1,18 +1,20 @@
 import random
-moves = ['rock', 'paper', 'scissors']
 
 
 class Player:
 
     def __init__(self):
+        self.moves = ['rock', 'paper', 'scissors']
         self.count = 0
         self.their_move = ""
+        self.my_move = ""
 
     def move(self, rounds):
         return 'rock'
 
     def learn(self, my_move, their_move):
-        pass
+        self.their_move = their_move
+        self.my_move = my_move
 
     def beats(one, two):
         if one != two:
@@ -26,7 +28,7 @@ class Player:
 class RandomPlayer(Player):
 
     def move(self, rounds):
-        return random.choice(moves)
+        return random.choice(self.moves)
 
 
 class ReflectPlayer(Player):
@@ -36,17 +38,20 @@ class ReflectPlayer(Player):
             return RandomPlayer.move(self, rounds)
 
         else:
-            return self.their_move 
-
-    def learn(self, my_move, their_move):
-        self.their_move = their_move
-        return self.their_move
+            return self.their_move
 
 
 class CyclePlayer(Player):
 
     def move(self, rounds):
-        pass
+        index = (rounds - 1) % 3
+
+        if index == 0:
+            random.shuffle(self.moves)
+            return self.moves[index]
+
+        else:
+            return self.moves[index]
 
 
 class HumanPlayer(Player):
@@ -54,9 +59,9 @@ class HumanPlayer(Player):
     def move(self, rounds):
         self.moving = input("Rock, paper, scissors? > ").lower()
 
-        for options in moves:  # Why?
+        for options in self.moves:  # Why?
 
-            if self.moving in moves:
+            if self.moving in self.moves:
                 return self.moving
 
             else:
@@ -108,12 +113,12 @@ class Game:
 
     def play_game(self):
         print("Game start!")
-        for round in range(3):
+        for round in range(10):
             self.play_round()
         self.winner()
         print("Game over!")
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), ReflectPlayer())
+    game = Game(HumanPlayer(), CyclePlayer())
     game.play_game()
