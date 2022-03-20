@@ -120,5 +120,7 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), CyclePlayer())
+    computer_player = (Player, RandomPlayer, ReflectPlayer, CyclePlayer)
+    Player2 = random.choice(computer_player)
+    game = Game(HumanPlayer(), RandomPlayer)
     game.play_game()
