@@ -6,28 +6,52 @@ class Player:
 
     def __init__(self):
         self.count = 0
+        self.their_move = ""
 
-    def move(self):
+    def move(self, rounds):
         return 'rock'
 
     def learn(self, my_move, their_move):
         pass
 
     def beats(one, two):
-        return ((one == 'rock' and two == 'scissors') or
-                (one == 'scissors' and two == 'paper') or
-                (one == 'paper' and two == 'rock'))
+        if one != two:
+            return ((one == 'rock' and two == 'scissors') or
+                    (one == 'scissors' and two == 'paper') or
+                    (one == 'paper' and two == 'rock'))
+        else:
+            return 2
 
 
 class RandomPlayer(Player):
 
-    def move(self):
+    def move(self, rounds):
         return random.choice(moves)
+
+
+class ReflectPlayer(Player):
+
+    def move(self, rounds):
+        if rounds == 1:
+            return RandomPlayer.move(self, rounds)
+
+        else:
+            return self.their_move 
+
+    def learn(self, my_move, their_move):
+        self.their_move = their_move
+        return self.their_move
+
+
+class CyclePlayer(Player):
+
+    def move(self, rounds):
+        pass
 
 
 class HumanPlayer(Player):
 
-    def move(self):
+    def move(self, rounds):
         self.moving = input("Rock, paper, scissors? > ").lower()
 
         for options in moves:  # Why?
@@ -36,7 +60,7 @@ class HumanPlayer(Player):
                 return self.moving
 
             else:
-                self.move()
+                self.move(rounds)
 
 
 class Game:
@@ -55,14 +79,17 @@ class Game:
         elif score == 0:
             self.p2.count += 1
 
+        else:
+            pass
+
         print("\tScore: " + str(self.p1.count) + " - " + str(self.p2.count)
               + "\n")
 
     def winner(self):
-        if self.p1.count >= self.p2.count:
-            print("Player1 wins!") 
+        if self.p1.count > self.p2.count:
+            print("Player1 wins!")
 
-        elif self.p1.count <= self.p2.count:
+        elif self.p1.count < self.p2.count:
             print("Player2 wins!")
 
         else:
@@ -71,8 +98,8 @@ class Game:
     def play_round(self):
         self.round_count += 1
         rounds = self.round_count
-        move1 = self.p1.move()
-        move2 = self.p2.move()
+        move1 = self.p1.move(rounds)
+        move2 = self.p2.move(rounds)
         print(f"\nRound {rounds}:")
         print(f"Player1: {move1}\tPlayer2: {move2}")
         self.score_check(move1, move2)
@@ -88,5 +115,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), ReflectPlayer())
     game.play_game()
