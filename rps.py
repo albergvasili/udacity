@@ -112,15 +112,19 @@ class Game:
         self.p2.learn(move2, move1)
 
     def play_game(self):
-        print("Game start!")
-        for round in range(10):
-            self.play_round()
-        self.winner()
-        print("Game over!")
+        print("\nGame start!")
+        total_rounds = input("How many rounds would you like to play? > ")
+        try:
+            for round in range(int(total_rounds)):
+                self.play_round()
+            self.winner()
+            print("\nGame over!")
+        except ValueError:
+            game.play_game()
 
 
 if __name__ == '__main__':
-    computer_classes = (Player(), RandomPlayer(), ReflectPlayer(), 
+    computer_classes = (Player(), RandomPlayer(), ReflectPlayer(),
                         CyclePlayer())
     computer_player = random.choice(computer_classes)
     game = Game(HumanPlayer(), computer_player)
