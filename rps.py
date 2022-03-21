@@ -120,7 +120,8 @@ class Game:
 
 
 if __name__ == '__main__':
-    computer_player = (Player, RandomPlayer, ReflectPlayer, CyclePlayer)
-    Player2 = random.choice(computer_player)
-    game = Game(HumanPlayer(), RandomPlayer)
+    computer_classes = (Player(), RandomPlayer(), ReflectPlayer(), 
+                        CyclePlayer())
+    computer_player = random.choice(computer_classes)
+    game = Game(HumanPlayer(), computer_player)
     game.play_game()
