@@ -6,7 +6,6 @@ let theButton = document.querySelector('button');
 
 theButton.addEventListener('click', function(){
 	checkChild(designGrid);
-	console.log('Ca marche');
 });
 
 
