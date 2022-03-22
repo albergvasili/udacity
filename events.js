@@ -1,7 +1,6 @@
 let designGrid = document.getElementById('designGrid');
 let gHeight = document.getElementById('gridHeight');
 let gWidth = document.getElementById('gridWidth');
-let forme = document.querySelector("table");
 let theButton = document.querySelector("button")
 
 theButton.addEventListener('click', function(){
@@ -11,7 +10,14 @@ theButton.addEventListener('click', function(){
 
 
 function mkgrid() {
-		icell = document.createElement("tr");
-		forme.appendChild(icell);
-			
+	atable = document.createElement("table");
+	designGrid.appendChild(atable);
+	for (x = 0; x < gHeight.value; x++){
+		row = atable.insertRow(x);
+		for (y = 0; y < gWidth.value; y++){
+			row.insertCell(y);
+		}
+	}
 };
+
+		

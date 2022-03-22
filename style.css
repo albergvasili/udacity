@@ -1,3 +1,21 @@
-table{
-	border: 1px solid black;
+table,
+tbody,
+tr,
+td {
+	border: 10px solid black;
 }
+
+table {
+	margin: 0 auto;
+}
+
+tr {
+	height: 20px;
+}
+
+td {
+	width:20px;
+}
+
+
+
