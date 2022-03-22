@@ -1,7 +1,8 @@
 let designGrid = document.getElementById('designGrid');
 let gHeight = document.getElementById('gridHeight');
 let gWidth = document.getElementById('gridWidth');
-let theButton = document.querySelector('button')
+let pColor = document.getElementById('pickColor');
+let theButton = document.querySelector('button');
 
 theButton.addEventListener('click', function(){
 	checkChild(designGrid);
@@ -17,8 +18,7 @@ function mkgrid() {
 		for (y = 0; y < gWidth.value; y++){
 			let cellColor = row.insertCell(y);
 			cellColor.addEventListener('click', function(){
-				cellColor.style.background = 'blue';
-
+				cellColor.style.background = pColor.value;
 			});
 		}
 	}
