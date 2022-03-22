@@ -2,15 +2,17 @@ table,
 tbody,
 tr,
 td {
-	border: 10px solid black;
+	border: 10px solid white;
 }
 
 table {
 	margin: 0 auto;
+	background: black;
 }
 
-tr {
+tr, td {
 	height: 20px;
+	background: white;
 }
 
 td {

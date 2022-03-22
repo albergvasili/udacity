@@ -4,7 +4,7 @@ let gWidth = document.getElementById('gridWidth');
 let theButton = document.querySelector("button")
 
 theButton.addEventListener('click', function(){
-	mkgrid();
+	checkChild(designGrid);
 	console.log("Ca marche");
 });
 
@@ -20,4 +20,14 @@ function mkgrid() {
 	}
 };
 
+function checkChild(element){
+	if (element.children.length >= 1){
+		while (element.firstChild) {
+			element.removeChild(element.firstChild);
+		}
+		mkgrid();
+	} else {
+		mkgrid();
+	}
+};
 		
