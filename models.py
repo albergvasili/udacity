@@ -65,9 +65,6 @@ class NearEarthObject:
         return full_name 
 
     def __str__(self):
-        return 
-
-    def __str__(self):
         """Return `str(self)`."""
         # TODO: Use this object's attributes to return a human-readable string representation.
         # The project instructions include one possibility. Peek at the __repr__
@@ -142,7 +139,10 @@ class CloseApproach:
         # TODO: Use this object's attributes to return a human-readable string representation.
         # The project instructions include one possibility. Peek at the __repr__
         # method for examples of advanced string formatting.
-        return f"A CloseApproach ..."
+            
+        return (f'At {self.time_str}, (fullname) approaches Earth'
+                f'at a distance of {self.distance} and a velocity of '
+                f'{self.velocity} km/s')
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
