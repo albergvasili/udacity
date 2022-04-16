@@ -1,3 +1,5 @@
+"""Ingest PDF files."""
+
 from .IngestorInterface import IngestorInterface
 from .QuoteModule import QuoteModule
 from typing import List
@@ -6,10 +8,13 @@ import subprocess
 
 
 class PDFIngestor(IngestorInterface):
+    """Inherit from IngestorInterface to convert and ingest pdf files."""
+
     extensions = ['.pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModule]:
+        """Verify if file is a pdf, convert, parse and return quote."""
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest Exception")
 
