@@ -14,7 +14,7 @@ class IngestorInterface(ABC):
     def can_ingest(cls, path: str) -> bool:
         """Verify if file type is compatible"""
         ext = path.split('.')[-1]
-        return ext in extensions
+        return ext in cls.extensions
 
     @classmethod
     @abstractmethod
