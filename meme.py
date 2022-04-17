@@ -1,11 +1,13 @@
+"""Generate a meme from the command line."""
 import os
 import random
-
-# @TODO Import your Ingestor and MemeEngine classes
+import argparse
+import QuoteEngine
+from .MemeGenerator import MemeGenerator
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
+    """Generate a meme given a path and a quote."""
     img = None
     quote = None
 
@@ -34,15 +36,18 @@ def generate_meme(path=None, body=None, author=None):
             raise Exception('Author Required if Body is Used')
         quote = QuoteModel(body, author)
 
-    meme = MemeEngine('./tmp')
+    meme = MemeGenerator('./tmp')
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 
 
 if __name__ == "__main__":
-    # @TODO Use ArgumentParser to parse the following CLI arguments
-    # path - path to an image file
-    # body - quote body to add to the image
-    # author - quote author to add to the image
-    args = None
+    parser = argparse.Argumentparser(description="")
+    parser.add_argument('--body', type=str, help="string quote body")
+    parser.add_argument('--author', type=str, help="string quote author")
+    parser.add_argument('--path', type=str, help="path to image file")
+    args = parser.parse_args()
+    body = args.body
+    author = args.author
+    path = args.path
     print(generate_meme(args.path, args.body, args.author))
