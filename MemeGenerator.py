@@ -1,5 +1,5 @@
 """Use Pillow library to generate a meme."""
-from PIL import Image, ImageDraw, ImageFront
+from PIL import Image, ImageDraw, ImageFont
 
 
 class MemeGenerator():

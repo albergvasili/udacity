@@ -2,8 +2,8 @@
 import os
 import random
 import argparse
-import QuoteEngine
-from .MemeGenerator import MemeGenerator
+from QuoteEngine import QuoteModel, Ingestor
+import MemeGenerator
 
 
 def generate_meme(path=None, body=None, author=None):
@@ -42,7 +42,7 @@ def generate_meme(path=None, body=None, author=None):
 
 
 if __name__ == "__main__":
-    parser = argparse.Argumentparser(description="")
+    parser = argparse.ArgumentParser(description="")
     parser.add_argument('--body', type=str, help="string quote body")
     parser.add_argument('--author', type=str, help="string quote author")
     parser.add_argument('--path', type=str, help="path to image file")
