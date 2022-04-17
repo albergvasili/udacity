@@ -40,7 +40,7 @@ def meme_rand():
     """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    path = meme.make_meme(img, quote.body, quote.author)
+    path = meme.generate_meme(img, quote.body, quote.author)
     return render_template('meme.html', path=path)
 
 
