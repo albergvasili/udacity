@@ -1,7 +1,8 @@
 """Ingest Docx files"""
 import docx
 from typing import List
-from .Ingestor import IngestorInterface
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 
 class DocxIngestor(IngestorInterface):
@@ -13,6 +14,7 @@ class DocxIngestor(IngestorInterface):
         """Verify if file is a docx, parse and return quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest Exception')
+
 
         quotes = []
         doc = docx.Document(path)

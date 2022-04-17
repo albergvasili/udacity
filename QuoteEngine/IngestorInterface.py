@@ -1,6 +1,6 @@
 """Abstract base class to be used by helper ingestor classes."""
 
-from .QuoteModule import QuoteModule
+from .QuoteModel import QuoteModel
 from typing import List
 from abc import ABC, abstractmethod
 
@@ -18,6 +18,6 @@ class IngestorInterface(ABC):
 
     @classmethod
     @abstractmethod
-    def parse(cls, path: str) -> List[QuoteModule}:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """Abstract method for parsing file content"""
         pass

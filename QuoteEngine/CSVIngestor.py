@@ -3,6 +3,7 @@
 import csv
 from .IngestorInterface import IngestorInterface
 from typing import List
+from .QuoteModel import QuoteModel
 
 
 class CSVIngestor(IngestorInterface):

@@ -1,7 +1,7 @@
 """Ingest txt files."""
 
 from .IngestorInterface import IngestorInterface
-from .QuoteModule import QuoteModule
+from .QuoteModel import QuoteModel
 from typing import List
 import os
 
@@ -12,7 +12,7 @@ class txtIngestor(IngestorInterface):
     extensions = ['.txt']
 
     @classmethod
-    def parse(cls, path: str) -> List[QuoteModule]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """Verify if file is a txt, parse and return quotes."""
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest Exception')
