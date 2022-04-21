@@ -26,15 +26,20 @@ def load_neos(neo_csv_path):
     """
     # TODO: Load NEO data from the given CSV file.
     neo_liste = []
-    with open('neo_csv_path') as infile:
-        csv = csv.reader(f)
-        next(csv)
-        for row in csv:
+    with open(neo_csv_path) as infile:
+        csv_file = csv.reader(infile)
+        next(csv_file)
+        for row in csv_file:
             designation = row[3]
             name = row[4]
             hazardous = row[7]
             diameter = row[15]
-            neo = {name: [designation, name, hazardous, diameter]}
+            neo = {
+                'designation': designation,
+                'name': name,
+                'hazardous': hazardous,
+                'diameter': diameter,
+            }
             neo_liste.append(neo)
     return neo_liste
         
@@ -47,13 +52,18 @@ def load_approaches(cad_json_path):
     """
     # TODO: Load close approach data from the given JSON file.
     cad_liste = []
-    with open('cad_json_path') as infile:
-        json = json.load()
-        for liste in json['data']:
+    with open(cad_json_path) as infile:
+        json_file = json.load(infile)
+        for liste in json_file['data']:
             designation = liste[0]
             time = liste[3]
             distance = liste[4]
             velocity = liste[7]
-            cad = {designation: [designation, time, distance, velocity]}
+            cad = {
+                'designation': designation,
+                'time': time,
+                'distance': distance,
+                'velocity': velocity
+            }
             cad_liste.append(cad)
     return cad_liste
