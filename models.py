@@ -34,8 +34,8 @@ class NearEarthObject:
     """
     # TODO: How can you, and should you, change the arguments to this constructor?
     # If you make changes, be sure to update the comments in this file.
-    def __init__(self, designation='', name=None, diameter=float('nan'),
-                 hazardous=False):
+    def __init__(self, designation = None, name = None, diameter = float('nan'),
+                 hazardous = False):
         """Create a new `NearEarthObject`.
 
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
@@ -45,10 +45,22 @@ class NearEarthObject:
         # You should coerce these values to their appropriate data type and
         # handle any edge cases, such as a empty name being represented by `None`
         # and a missing diameter being represented by `float('nan')`.
-        self.designation = designation
-        self.name = name 
-        self.diameter = diameter 
-        self.hazardous = hazardous
+        if not designation:
+            self.designation = None
+        else:
+            self.designation = str(designation)
+
+        if not name:
+            self.name = None
+        else:
+            self.name = str(name) 
+
+        if not diameter:
+            self.diameter = float('nan')
+        else:
+            self.diameter = float(diameter) 
+
+        self.hazardous = bool(hazardous == 'Y')
 
         # Create an empty initial collection of linked approaches.
         self.approaches = []
@@ -97,7 +109,7 @@ class CloseApproach:
     """
     # TODO: How can you, and should you, change the arguments to this constructor?
     # If you make changes, be sure to update the comments in this file.
-    def __init__(self, designation='', time = None, distance = 0.0, 
+    def __init__(self, designation = None, time = None, distance = 0.0, 
                  velocity = 0.0):
         """Create a new `CloseApproach`.
 
@@ -107,10 +119,15 @@ class CloseApproach:
         # onto attributes named `_designation`, `time`, `distance`, and `velocity`.
         # You should coerce these values to their appropriate data type and handle any edge cases.
         # The `cd_to_datetime` function will be useful.
-        self._designation = designation
+        if not designation:
+            self.designation = None
+        else:
+            self.designation = str(designation)
+
         self.time = cd_to_datetime(time)  # TODO: Use the cd_to_datetime function for this attribute.
-        self.distance = distance
-        self.velocity = velocity
+
+        self.distance = float(distance)
+        self.velocity = float(velocity)
 
         # Create an attribute for the referenced NEO, originally None.
         self.neo = None

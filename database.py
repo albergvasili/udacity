@@ -41,13 +41,14 @@ class NEODatabase:
         """
         self._neos = neos
         self._approaches = approaches
-        self.pdes = {x['designation']: x for x in self._neos}
-        self.name = {x['name']: x for x in self._neos}
+        self.pdes = {x.designation: x for x in self._neos}
+        self.name = {x.name: x for x in self._neos}
 
         for approach in self._approaches:
-            if approach._designation in self._neos:
-                approach.neo = self.pdes['designation']
-                
+            if approach.designation in self.pdes:
+                approach.neo = self.pdes[approach.designation]
+                approach.neo.approaches.append(approaches)
+
 
 
 
@@ -71,8 +72,8 @@ class NEODatabase:
         """
         # TODO: Fetch an NEO by its primary designation.
 
-        if designation in self.designation:
-            return self.designation[designation]
+        if designation in self.pdes:
+            return self.pdes[designation]
         else:
             return None
 
