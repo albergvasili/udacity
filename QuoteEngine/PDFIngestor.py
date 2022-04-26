@@ -10,7 +10,7 @@ import subprocess
 class PDFIngestor(IngestorInterface):
     """Inherit from IngestorInterface to convert and ingest pdf files."""
 
-    extensions = ['.pdf']
+    extensions = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

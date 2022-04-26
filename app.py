@@ -1,5 +1,4 @@
-"""Use requests package to fetch an image from a submitted URL."""
-
+"""Generate a random or a user defined meme on a flask app"""
 import random
 import os
 import requests
@@ -40,7 +39,7 @@ def meme_rand():
     """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    path = meme.generate_meme(img, quote.body, quote.author)
+    path = meme.make_meme(img, quote[0], quote[1])
     return render_template('meme.html', path=path)
 
 
@@ -55,8 +54,8 @@ def meme_post():
     """Create a user defined meme."""
     img_url = request.form['image_url']
     body = request.form['body']
-    author = request.form['body']
-    response = requests.get(img_url, tream=True).content
+    author = request.form['author']
+    response = requests.get(img_url, stream=True).content
 
     temp_img = './temp_img.jpg'
 
@@ -64,7 +63,7 @@ def meme_post():
         f.write(response)
 
     os.remove(temp_img)
-    path = generate.meme(temp_img, body, author)
+    path = meme.make_meme(temp_img, body, author)
     return render_template('meme.html', path=path)
 
 

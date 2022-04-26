@@ -28,7 +28,8 @@ def generate_meme(path=None, body=None, author=None):
                        './_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+            quote = (Ingestor.parse(f))
+            quotes.append(quote)
 
         quote = random.choice(quotes)
     else:
@@ -36,8 +37,8 @@ def generate_meme(path=None, body=None, author=None):
             raise Exception('Author Required if Body is Used')
         quote = QuoteModel(body, author)
 
-    meme = MemeGenerator('./tmp')
-    path = meme.make_meme(img, quote.body, quote.author)
+    meme = MemeGenerator.MemeGenerator('./tmp')
+    path = meme.make_meme(img, quote[0], quote[1])
     return path
 
 

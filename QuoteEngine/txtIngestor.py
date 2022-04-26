@@ -9,7 +9,7 @@ import os
 class txtIngestor(IngestorInterface):
     """Inherit from IngestorInterface to convert and ingest txt files."""
 
-    extensions = ['.txt']
+    extensions = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
