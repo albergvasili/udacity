@@ -29,7 +29,7 @@ def generate_meme(path=None, body=None, author=None):
         quotes = []
         for f in quote_files:
             quote = (Ingestor.parse(f))
-            quotes.append(quote)
+            quotes.extend(quote)
 
         quote = random.choice(quotes)
     else:
@@ -38,7 +38,7 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = MemeGenerator.MemeGenerator('./tmp')
-    path = meme.make_meme(img, quote[0], quote[1])
+    path = meme.make_meme(img, quote.body, quote.author)
     return path
 
 

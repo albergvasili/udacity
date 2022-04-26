@@ -21,9 +21,9 @@ class MemeGenerator():
 
             if text is not None and author is not None:
                 draw = ImageDraw.Draw(img)
-                font = ImageFont.truetype('Roboto-Regular.ttf')
+                font = ImageFont.truetype('Roboto-Regular.ttf', 30)
                 quote = f'{text} - {author}'
-                draw.text((10, 30), quote, font=font, fill='black')
+                draw.text((10, 40), quote, font=font, fill='white')
 
             img.save(out)
 

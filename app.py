@@ -21,7 +21,7 @@ def setup():
     quotes = []
     for files in quote_files:
         quote = Ingestor.parse(files)
-        quotes.append(quote)
+        quotes.extend(quote)
 
     images_path = "./_data/photos/dog/"
 
@@ -39,7 +39,7 @@ def meme_rand():
     """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    path = meme.make_meme(img, quote[0], quote[1])
+    path = meme.make_meme(img, quote.body, quote.author)
     return render_template('meme.html', path=path)
 
 
@@ -57,13 +57,13 @@ def meme_post():
     author = request.form['author']
     response = requests.get(img_url, stream=True).content
 
-    temp_img = './temp_img.jpg'
+    temp_img = f'{random.randint(1, 100000)}.jpg'
 
     with open(temp_img, 'wb') as f:
         f.write(response)
 
-    os.remove(temp_img)
     path = meme.make_meme(temp_img, body, author)
+    os.remove(temp_img)
     return render_template('meme.html', path=path)
 
 
