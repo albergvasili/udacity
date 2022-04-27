@@ -64,8 +64,6 @@ class NEODatabase:
         :return: The `NearEarthObject` with the desired primary designation,
         or `None`.
         """
-        # TODO: Fetch an NEO by its primary designation.
-
         if designation in self.pdes:
             return self.pdes[designation]
         else:
@@ -85,7 +83,6 @@ class NEODatabase:
         :param name: The name, as a string, of the NEO to search for.
         :return: The `NearEarthObject` with the desired name, or `None`.
         """
-        # TODO: Fetch an NEO by its name.
         if name in self.name:
             return self.name[name]
         else:
@@ -107,7 +104,6 @@ class NEODatabase:
         criteria.
         :return: A stream of matching `CloseApproach` objects.
         """
-        # TODO: Generate `CloseApproach` objects that match all of the filters.
         for approach in self._approaches:
             flag = True
             for f in filters:

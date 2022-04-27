@@ -210,7 +210,6 @@ def create_filters(
         hazardous = HazardousFilter(operator.eq, hazardous)
         filters.append(hazardous)
 
-    # TODO: Decide how you will represent your filters.
     return filters
 
 
@@ -223,7 +222,6 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
     if n:
         iterator = itertools.islice(iterator, n)
 
