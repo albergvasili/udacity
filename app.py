@@ -55,7 +55,13 @@ def meme_post():
     img_url = request.form['image_url']
     body = request.form['body']
     author = request.form['author']
-    response = requests.get(img_url, stream=True).content
+
+    try:
+        response = requests.get(img_url, stream=True).content
+    except:
+        print('Please provide a valid image URL')
+        return render_template('meme_error.html')
+
 
     temp_img = f'{random.randint(1, 100000)}.jpg'
 
