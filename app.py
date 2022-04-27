@@ -58,10 +58,9 @@ def meme_post():
 
     try:
         response = requests.get(img_url, stream=True).content
-    except:
+    except OSError:
         print('Please provide a valid image URL')
         return render_template('meme_error.html')
-
 
     temp_img = f'{random.randint(1, 100000)}.jpg'
 
