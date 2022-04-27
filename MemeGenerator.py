@@ -1,6 +1,7 @@
 """Use Pillow library to generate a meme."""
 import os
 import random
+from math import ceil
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -14,8 +15,8 @@ class MemeGenerator():
     def make_meme(self, img_path, text, author, width=500) -> str:
         """Resize image and draw text."""
         with Image.open(img_path) as img:
-            ratio = width/img.size[0]
-            height = ratio*img.size[1]
+            ratio = ceil(width/img.size[0])
+            height = ceil(ratio*img.size[1])
             img = img.resize((width, height), Image.NEAREST)
             out = os.path.join(self.output, f'{random.randint(1, 1000)}.jpg')
 

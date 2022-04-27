@@ -1,4 +1,4 @@
-"""Generate a random or a user defined meme on a flask app"""
+"""Generate a random or a user defined meme on a flask app."""
 import random
 import os
 import requests

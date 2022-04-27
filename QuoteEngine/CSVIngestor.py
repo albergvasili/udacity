@@ -26,12 +26,12 @@ class CSVIngestor(IngestorInterface):
                 quote = QuoteModel(elem['body'], elem['author'])
                 quotes.append(quote)
 
-        #I'm having an error related to the numpy dependency, so I decided
-        #to import the csv library instead.
+        # I'm having an error related to the numpy dependency, so I decided
+        # to import the csv library instead.
 
-        #df = pandas.read_csv(path, header=0)
-        #for index, row in df.iterrows():
-            #quote = QuoteModel(row['body'], row['author'])
-            #quotes.append(quote)
+        # df = pandas.read_csv(path, header=0)
+        # for index, row in df.iterrows():
+            # quote = QuoteModel(row['body'], row['author'])
+            # quotes.append(quote)
 
         return quotes

@@ -1,4 +1,4 @@
-"""Import ingestor helper classes"""
+"""Import ingestor helper classes."""
 
 from .Ingestor import Ingestor
 from .CSVIngestor import CSVIngestor
