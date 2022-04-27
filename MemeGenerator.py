@@ -11,8 +11,8 @@ class MemeGenerator():
     def __init__(self, output_dir: str):
         """Create object with output path instance."""
         self.output = output_dir
-        if not os.path.isdir('static'):
-            os.makedirs('static')
+        if not os.path.isdir(output_dir):
+            os.makedirs(output_dir)
 
     def make_meme(self, img_path, text, author, width=500) -> str:
         """Resize image and draw text."""
