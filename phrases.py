@@ -1,9 +1,10 @@
+"""Phrases lists to randomize characters answers."""
 import random
 import time
 
 
 def wronganswer():
-    # Random phrases for wrong input answers.
+    """Choose random phrase for wrong input."""
     random_else = ["A black cat approaches, meows at you, and leaves.",
                    "A fly buzzes in your ear.",
                    "You feel a bird poop landing on your shoulder.",
@@ -16,7 +17,7 @@ def wronganswer():
 
 
 def advice():
-    # Random words for character advices.
+    """Random words for character advices."""
     words = ["time", "heart", "desires", "goals", "fears", "enemies",
              "pets", "wisdom", "crystals", "master", "insanity", "words",
              "temper", "feelings", "decisions", "dexterity", "destiny",

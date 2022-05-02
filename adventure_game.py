@@ -1,14 +1,17 @@
+"""Text based adventure game."""
 import phrases
 import time
 import sys
 
 
 def printi(text):
+    """Create special print function with sleep time."""
     print(text)
     time.sleep(2)
 
 
 def intro(progress):
+    """Begin game."""
     printi("The mighty Celadon grabbed the old mysterious book.")
     printi("He deliberately opened a random page and read:")
     printi("'When the Moon covered the Sun, the Valiant Explorer "
@@ -20,6 +23,7 @@ def intro(progress):
 
 
 def valiant_question(progress):
+    """Check answer to proceed."""
     valiant_explorer = input("'Are you the Valiant Explorer of the Soul?'"
                              " (Y)/(N)").lower()
 
@@ -42,7 +46,7 @@ def valiant_question(progress):
 
 
 def path(progress):
-
+    """Check items to choose next step."""
     if "Bag" in progress:
         printi("You feel an ominous spirit surrounding Celadon's dark "
                "and massive tent.\n")
@@ -59,6 +63,7 @@ def path(progress):
 
 
 def Naranya(progress):
+    """Introduce the town of Naranya."""
     printi("You follow the long path to Naranya and enter through the gates.")
     printi("You are surrounded by small white houses with orange roofs "
            "on both sides of the main road.\n")
@@ -66,6 +71,7 @@ def Naranya(progress):
 
 
 def Naranya_knock_road(progress):
+    """Check input to determine first decision in Naranya."""
     printi("What would you like to do:")
     knock_or_road = input("Knock on a random door. (K)\n"
                           "Or follow the main road. (R)\n").lower()
@@ -85,6 +91,7 @@ def Naranya_knock_road(progress):
 
 
 def villager_answer(progress):
+    """Talk to villager in house by the road."""
     villager_talk = input("Talk about mystic crystals. (C)\n"
                           "Or ask for water. (W)\n").lower()
 
@@ -109,6 +116,7 @@ def villager_answer(progress):
 
 
 def follow_road(progress):
+    """Follow the road towards the plaza."""
     printi("You follow the road to the main plaza.")
     printi("A young man is reading sitting by a tree nearby.")
     printi("There is a tall statue of a woman holding a small "
@@ -118,6 +126,7 @@ def follow_road(progress):
 
 
 def plaza(progress):
+    """Make a decision in the plaza."""
     printi("What would you like to do:")
     plaza_choice = input("Approach young man. (Y)\n"
                          "Or steal the shiny object. (S)\n").lower()
@@ -136,6 +145,7 @@ def plaza(progress):
 
 
 def plaza_steal(progress):
+    """Steal the crystal."""
     printi("You start climbing the statue and realize that the shiny "
            "object is indeed a crystal.")
     printi("As you reach and grab the crystal, a guard sees you and "
@@ -147,6 +157,7 @@ def plaza_steal(progress):
 
 
 def plaza_alley(progress):
+    """Check progress list to choose events in the alley."""
     if "Water" in progress:
         printi("The friendly woman that gave you water is in front of you.")
         plaza_alley_villager(progress)
@@ -161,6 +172,7 @@ def plaza_alley(progress):
 
 
 def plaza_alley_villager(progress):
+    """Make decision in alley."""
     alley = input("Do you run back to the plaza. (B)\n"
                   "Or do you ask the villager for help. (H)\n").lower()
 
@@ -180,6 +192,7 @@ def plaza_alley_villager(progress):
 
 
 def plaza_alley_death():
+    """Death in the alley."""
     printi("As you get ready to proceed, you have a cold feeling "
            "on your chest.")
     printi("An arrow pierced your heart. You feel the blood "
@@ -191,7 +204,7 @@ def plaza_alley_death():
 
 
 def plaza_alley_villager_help(progress):
-
+    """Check progress list when asking for help in the alley."""
     if "Water" in progress:
         printi("The villager recognizes you and grabs your hand.")
         printi("She guides you through the alleys and takes you "
@@ -207,6 +220,7 @@ def plaza_alley_villager_help(progress):
 
 
 def plaza_talk(progress):
+    """Answers from young man by the plaza."""
     young_man_talk = input("Do you ask him about the crystal? (C)\n"
                            "Or do you ask him about "
                            "his writings (W)\n").lower()
@@ -245,6 +259,7 @@ def plaza_talk(progress):
 
 
 def plaza_talk_intention(progress):
+    """Conversation with the young man if answer from plaza_talk was "w"."""
     your_intention = input("Reveal your intentions about the "
                            "crystal (C)\n"
                            "Or you are just another wanderer "
@@ -278,6 +293,7 @@ def plaza_talk_intention(progress):
 
 
 def plaza_talk_intention_bag(progress):
+    """Make decision about bag to proceed."""
     take_or_leave = input("Do you take the bag and run? (T)\n"
                           "Or do you help the young man? "
                           "(H)\n").lower()
@@ -307,6 +323,7 @@ def plaza_talk_intention_bag(progress):
 
 
 def Celadon(progress):
+    """Check progress list to determine Celadon's reaction."""
     printi("You go inside. Celadon is standing in front of you.")
 
     if "Valiant" in progress:
@@ -317,6 +334,7 @@ def Celadon(progress):
 
 
 def Celadon_valiant(progress):
+    """Celadon's reaction to 'valiant' in progress list."""
     crystal_valiant = input("'Valiant Explorer! Do you come back to "
                             "offer the crystal to your master?'"
                             "(Y)/(N)\n").lower()
@@ -334,7 +352,7 @@ def Celadon_valiant(progress):
 
 
 def Celadon_coward(progress):
-
+    """Celadon's reaction to 'coward' in progress list."""
     printi("'Coward! How dare you come to mighty Celadon's tent?'\n")
     printi("Celadon threatens you with his staff")
     crystal_coward = input("Do you give Celadon the crystal? (C)\n"
@@ -352,7 +370,7 @@ def Celadon_coward(progress):
 
 
 def bag_or_crystal(progress):
-
+    """Check progress to reveal bag's contents or proceed to victory."""
     if "Bag" in progress:
         printi("You proudly hand the bag to Celadon and start imagining "
                "your great reward, and many years of prosperity.")
@@ -368,7 +386,7 @@ def bag_or_crystal(progress):
 
 
 def run_away():
-
+    """Game over after bag's content is revealed."""
     printi("You attempt to run away but the rug where you stand "
            "becomes a hollow surface.")
     printi("You fall in a never ending dark and cold tunnel until "
@@ -377,6 +395,7 @@ def run_away():
 
 
 def mission_accomplished():
+    """Victorious ending."""
     printi("You hand the crystal to your Master.")
     printi("'Wonderful! You really are a valiant explorer after all!'\n")
     printi("Congratulations! You won!")
@@ -384,6 +403,7 @@ def mission_accomplished():
 
 
 def play_again():
+    """Prompt user to play againi or exit."""
     restart = input("Would you like to play again? (Y)/(N)\n").lower()
 
     if restart == "y":
@@ -397,6 +417,7 @@ def play_again():
 
 
 def play_game():
+    """Start game with an empty progress list."""
     progress = []
     intro(progress)
 
