@@ -1,39 +1,49 @@
+"""Play rock paper scissors agains different computer player strategies."""
 import random
 
 
 class Player:
+    """Base player superclass that always plays rock."""
 
     def __init__(self):
+        """Define moves, counts, and variables to remember previous moves."""
         self.moves = ['rock', 'paper', 'scissors']
         self.count = 0
         self.their_move = ""
         self.my_move = ""
 
     def move(self, rounds):
+        """Move rock."""
         return 'rock'
 
     def learn(self, my_move, their_move):
+        """Remember moves."""
         self.their_move = their_move
         self.my_move = my_move
 
     def beats(one, two):
+        """Return True if a player won the round."""
         if one != two:
             return ((one == 'rock' and two == 'scissors') or
                     (one == 'scissors' and two == 'paper') or
                     (one == 'paper' and two == 'rock'))
         else:
-            return 2
+            return None
 
 
 class RandomPlayer(Player):
+    """Player class that picks moves randomly."""
 
     def move(self, rounds):
+        """Chooose random move."""
         return random.choice(self.moves)
 
 
 class ReflectPlayer(Player):
+    """Player class that imitates the previous move of its opponent."""
 
     def move(self, rounds):
+        """Start game by playing randomly, then imitate opponent's moves."""
         if rounds == 1:
             return RandomPlayer.move(self, rounds)
 
@@ -42,8 +52,10 @@ class ReflectPlayer(Player):
 
 
 class CyclePlayer(Player):
+    """Player class that cycles through possible moves."""
 
     def move(self, rounds):
+        """Shuffle moves list for round 1, then cycle through moves."""
         index = (rounds - 1) % 3
 
         if index == 0:
@@ -55,27 +67,30 @@ class CyclePlayer(Player):
 
 
 class HumanPlayer(Player):
+    """Player class for human."""
 
     def move(self, rounds):
-        self.moving = input("Rock, paper, scissors? > ").lower()
+        """Prompt message to make move, then return move or ask again."""
+        moving = input("Rock, paper, scissors? > ").lower()
 
-        for options in self.moves:  # Why?
+        if moving in self.moves:
+            return moving
 
-            if self.moving in self.moves:
-                return self.moving
-
-            else:
-                self.move(rounds)
+        else:
+            move(rounds)
 
 
 class Game:
+    """Play game."""
 
     def __init__(self, p1, p2):
+        """Define players and rounds."""
         self.p1 = p1
         self.p2 = p2
         self.round_count = 0
 
     def score_check(self, move1, move2):
+        """Check moves and add points to the score."""
         score = Player.beats(move1, move2)
 
         if score == 1:
@@ -91,6 +106,7 @@ class Game:
               + "\n")
 
     def winner(self):
+        """Check score to announce winner."""
         if self.p1.count > self.p2.count:
             print("Player1 wins!")
 
@@ -101,6 +117,7 @@ class Game:
             print("Tie")
 
     def play_round(self):
+        """Play a round."""
         self.round_count += 1
         rounds = self.round_count
         move1 = self.p1.move(rounds)
@@ -112,6 +129,7 @@ class Game:
         self.p2.learn(move2, move1)
 
     def play_game(self):
+        """Start and end game."""
         print("\nGame start!")
         total_rounds = input("How many rounds would you like to play? > ")
         try:
