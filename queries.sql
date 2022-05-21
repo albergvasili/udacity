@@ -33,12 +33,12 @@ WHERE year = '2016' AND region = 'World';
 
 -- c. What was the change (in sq km) in the forest area of the world from 1990 to 2016?
 
-SELECT forest_area_sqkm - (SELECT forest_area_sqkm
-                           FROM forestation
-                           WHERE (year = '2016' AND region = 'World'))
-        AS forest_area_difference
-FROM forestation
-WHERE (year = '1990' AND region = 'World');
+SELECT (f1.forest_area_sqkm - f2.forest_area_sqkm)
+       AS forest_area_difference
+FROM forestation f1
+JOIN forestation f2
+ON f1.country_name = f2.country_name
+WHERE f1.year = '1990' AND f2.year = '2016' AND f1.region = 'World';
 
 --1324449
 
@@ -56,7 +56,24 @@ WHERE year = '1990' AND region = 'World'
 
 
 -- e. If you compare the amount of forest area lost between 1990 and 2016, to which country's total area in 2016 is it closest to?
+        
+SELECT country_name, total_area_sqkm
+FROM forestation
+WHERE year = '2016' 
+ AND total_area_sqkm < (
+        SELECT ABS(f1.forest_area_sqkm - f2.forest_area_sqkm)
+         AS forest_area_difference
+        FROM forestation f1
+        JOIN forestation f2
+        ON f1.country_name = f2.country_name
+        WHERE f1.year = '1990' 
+         AND f2.year = '2016' 
+         AND f1.region = 'World'
+)
+ORDER BY 2 DESC
+LIMIT 1;
 
+--Peru 1279999.9891
 
 
 /* Regional Outlook */
@@ -113,7 +130,3 @@ ON t2.region = t1.region
 ORDER BY change;
 
 --Sub-Saharan Africa 30.67 -> 28.78; Latin America & Caribb 51.09 -> 46.16
-
-/* Country-level detail */
-
-
