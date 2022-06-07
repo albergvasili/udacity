@@ -30,7 +30,7 @@ CREATE TABLE posts (
         url VARCHAR(4000),
         text_content TEXT,
         post_date TIMESTAMP,
-        CONSTRAINT "unique_id" UNIQUE (id)
+        CONSTRAINT "unique_id_posts" UNIQUE (id)
 );
 
 ALTER TABLE posts
@@ -49,7 +49,7 @@ CREATE TABLE comments (
         user_id INTEGER REFERENCES users (id) ON DELETE SET NULL, 
         text_content TEXT NOT NULL,
         parent_comment INTEGER,
-        CONSTRAINT "unique_id" UNIQUE (id)
+        CONSTRAINT "unique_comments_id" UNIQUE (id)
 );
 
 ALTER TABLE comments
