@@ -7,7 +7,6 @@ SELECT DISTINCT username
 
         UNION
 
-INSERT INTO users (username)
 SELECT DISTINCT username
  FROM bad_comments;
 
@@ -40,14 +39,13 @@ SELECT u.id user_id,
 
 -- Comments:
 INSERT INTO comments (user_id, post_id, text_content)
-SELECT u.id, b.id, b.text_content
+SELECT u.id, b.post_id, b.text_content
  FROM users u
- JOIN bad_posts b
+ JOIN bad_comments b
  ON u.username = b.username;
 
 
 -- Votes
-
 WITH vote_table AS (
         SELECT id, 
                REGEXP_SPLIT_TO_TABLE("upvotes", ',') username,
@@ -62,7 +60,9 @@ WITH vote_table AS (
          FROM bad_posts
 )
 INSERT INTO votes (post_id, user_id, value)
-SELECT DISTINCT v.id, p.user_id, v.vote
+SELECT v.id post, u.id user_id, v.vote
  FROM vote_table v
+ JOIN users u
+ ON u.username = v.username
  JOIN posts p
- ON p.id = v.id;
+ ON p.id = v.id
