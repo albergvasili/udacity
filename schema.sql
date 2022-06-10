@@ -64,7 +64,7 @@ CREATE TABLE votes (
         post_id INTEGER REFERENCES posts (id) ON DELETE CASCADE,
         user_id INTEGER REFERENCES users (id) ON DELETE SET NULL,
         value INTEGER,
-        CONSTRAINT "unique_vote" UNIQUE (post_id, user_id),
+        CONSTRAINT "unique_vote" UNIQUE (post_id, user_id)
 );
 
 ALTER TABLE votes
