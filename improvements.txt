@@ -1,14 +1,20 @@
 Improvements:
 
-  From the table bad_posts:
-    -The Primary Key should include the 'username' column to fully uniquely identify the table. Each post was made by a specific user.
+From the table bad_posts:
 
-    -Column 'topic' should have its own table in case there is more than one topic associated wih a single post in order to comply with the first normal form.
-    -The 'username' column should reference a table dedicated to users in order to avoid typos and improve efficacity.
+-The Primary Key should include the 'username' column to fully uniquely identify the table. Each post was made by a specific user.
 
-    -The way that 'upvotes' and 'downvotes' display their data prevents the table to be normalized. Those columns could be an integer instead in order to represent the amount of votes that a post has. And the data, which is currently a comma separated list of usernames in a single row could be migrate to its own table of up and down votes.
-    
-  From the table bad_comments:
-    -As noted above, 'username' should reference a users table.
-    -The table should have a composite Primary Key including the id and the username of each comment.
-    -The column 'post_id' references the table 'bad_posts'. A foreign key should be added.
+-Column 'topic' should have its own table in case there is more than one topic associated with a single post in order to comply with the first normal form.
+
+-The 'username' column should reference a table dedicated to users in order to avoid typos.
+
+-The way that 'upvotes' and 'downvotes' display their data prevents the table from being normalized. Those columns could be an integer instead in order to represent the number of votes that a post has. And the data, which is currently a comma separated list of usernames in a single row, could be migrated to its own table of up and down votes.
+
+
+From the table bad_comments:
+
+-As noted above, 'username' should reference a users table.
+
+-The table should have a composite Primary Key including the id and the username of each comment.
+
+-The column 'post_id' references the table 'bad_posts'. A foreign key should be added.
