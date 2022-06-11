@@ -8,6 +8,8 @@ CREATE TABLE users (
         CONSTRAINT "unique_username" UNIQUE (username)
 );
 
+CREATE INDEX "loging_date" ON users (last_login);
+
 
 -- Topics:
 CREATE TABLE topics (
@@ -43,6 +45,7 @@ ALTER TABLE posts
 
 CREATE INDEX "post_topic" ON posts (topic);
 CREATE INDEX "post_by_user" ON posts (user_id);
+CREATE INDEX "post_url" ON posts (url);
 
 
 -- Comments:
