@@ -12,7 +12,7 @@ SELECT DISTINCT username
         
         UNION
 
-SELECT DISTINCT REGEXP_SPLIT_TO_TABLE("upvotes", ','),
+SELECT DISTINCT REGEXP_SPLIT_TO_TABLE("upvotes", ',')
 FROM bad_posts
         
         UNION
@@ -76,4 +76,4 @@ SELECT v.id post, u.id user_id, v.vote
  JOIN users u
  ON u.username = v.username
  JOIN posts p
- ON p.id = v.id
+ ON p.id = v.id;

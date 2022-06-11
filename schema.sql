@@ -17,7 +17,7 @@ CREATE INDEX "loging_date" ON users (last_login);
 -- Topics:
 CREATE TABLE topics (
         id SERIAL PRIMARY KEY,
-        user_id INTEGER NOT NULL
+        user_id INTEGER 
           REFERENCES users (id),
         name VARCHAR(30) NOT NULL,
         description VARCHAR(500) DEFAULT NULL,
@@ -49,7 +49,7 @@ ALTER TABLE posts
    CHECK (url IS NOT NULL OR text_content IS NOT NULL),
   ADD CONSTRAINT "posts_composite_primary_key" PRIMARY KEY (id, user_id),
   ADD CONSTRAINT "post_title_not_empty"
-    CHECK (LENGTH(TRIM(name)) > 0);
+    CHECK (LENGTH(TRIM(title)) > 0);
 
 CREATE INDEX "post_topic" ON posts (topic);
 CREATE INDEX "post_by_user" ON posts (user_id);
