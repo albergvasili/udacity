@@ -8,6 +8,9 @@ CREATE TABLE users (
         CONSTRAINT "unique_username" UNIQUE (username)
 );
 
+ALTER TABLE users
+  ADD CHECK (LENGTH(TRIM(username)) > 0);
+
 CREATE INDEX "loging_date" ON users (last_login);
 
 
@@ -21,12 +24,15 @@ CREATE TABLE topics (
         CONSTRAINT "unique_name" UNIQUE (name)
 );
 
+ALTER TABLE topics
+  ADD CHECK (LENGTH(TRIM(name)) > 0);
+
 CREATE INDEX "topic_name" ON topics (name);
 
 
 -- Posts:
 CREATE TABLE posts (
-        id SERIAL,
+        id BIGSERIAL,
         user_id INTEGER 
           REFERENCES users (id) ON DELETE SET NULL, 
         title VARCHAR(100) NOT NULL,
@@ -41,7 +47,9 @@ CREATE TABLE posts (
 ALTER TABLE posts
   ADD CONSTRAINT "url_or_text_check" 
    CHECK (url IS NOT NULL OR text_content IS NOT NULL),
-  ADD CONSTRAINT "posts_composite_primary_key" PRIMARY KEY (id, user_id);
+  ADD CONSTRAINT "posts_composite_primary_key" PRIMARY KEY (id, user_id),
+  ADD CONSTRAINT "post_title_not_empty"
+    CHECK (LENGTH(TRIM(name)) > 0);
 
 CREATE INDEX "post_topic" ON posts (topic);
 CREATE INDEX "post_by_user" ON posts (user_id);
@@ -62,13 +70,16 @@ CREATE TABLE comments (
 
 ALTER TABLE comments
   ADD CONSTRAINT "comments_composite_key" 
-   PRIMARY KEY (id, post_id, user_id);
+   PRIMARY KEY (id, post_id, user_id),
+  ADD CONSTRAINT "text_not_empty"
+    CHECK (LENGTH(TRIM(text_content)) > 0);
 
 CREATE INDEX "parent_comment" ON comments (parent_comment);
 
 
 -- Votes:
 CREATE TABLE votes (
+        id SERIAL,
         post_id INTEGER NOT NULL
           REFERENCES posts (id) ON DELETE CASCADE,
         user_id INTEGER 
