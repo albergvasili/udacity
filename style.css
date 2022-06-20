@@ -6,6 +6,11 @@
 @import "./styles/header.css";
 
 
+/* CONTAINERS */
+
+@import "./styles/container.css";
+
+
 /* NAVIGATION SECTION */
 
 @import "./styles/navigation.css/";
@@ -21,8 +26,6 @@
 #post-cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: minmax(100px, auto);
-      
 }
 
 #post1 {
@@ -40,7 +43,6 @@
 #post4 {
         grid-area: 2/1/3/2;
 }
-
 
 #post5 {
         grid-area: 2/2/3/3;
