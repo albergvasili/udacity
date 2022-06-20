@@ -1,0 +1,24 @@
+/* STYLESHEET FOR BLOG POST */
+
+
+/* HEADER ELEMENT */
+
+@import "../styles/header.css";
+
+
+/* CONTAINERS */
+
+@import "../styles/container.css";
+
+
+/* NAVIGATION SECTION */
+
+@import "../styles/navigation.css/";
+
+
+/* FOOTER */
+
+@import "../styles/footer.css";
+
+
+/* POST CONTENT */
