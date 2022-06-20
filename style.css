@@ -3,7 +3,7 @@
 header {
         font-size: 16pt;
         font-family: Georgia;
-        color: #0f0;
+        color: #894;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -13,29 +13,63 @@ h2 {
         font-size: 0.8em;
 }
 
-nav {
+#navigation {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        justify-content: center;
+        border: 1em solid blue;
 }
+
+nav>* {
+        flex-grow: 1;
+        border: 0.5em solid purple;
+        text-align: center;
+
+
+}
+
 
 .container {
         border: 1em solid red;
+        box-shadow: 2px 2px 2px #cccccc;
 }
 
-.posts {
+#post {
         display: flex;
-        flex-direction: row;
-        border: 1em solid red;
+        flex-direction: column;
+        border: 1em solid green;
+        padding: 0.5em;
 }
 
 #post-cards {
         display: grid;
-        grid-area:
+        grid-template: repeat(3, 1fr);
+        grid-template-areas:
         "1 2 3"
         "4 5 6";
+
 }
 
+#post1 {
+        grid-area: "1";
+}
+
+#post2 {
+        grid-area: "2";
+}
+
+#post3 {
+        grid-area: "3";
+}
+
+#post4 {
+        grid-area: "4";
+}
+
+
+#post5 {
+        grid-area: "5";
+}
 
 /*
         display: grid;
