@@ -1,5 +1,8 @@
 /* Stylesheet for homepage */
 
+
+/*Header element*/
+
 header {
         font-size: 16pt;
         font-family: Georgia;
@@ -12,6 +15,9 @@ header {
 h2 {
         font-size: 0.8em;
 }
+
+
+/*Navigation section*/
 
 #navigation {
         display: flex;
@@ -33,6 +39,9 @@ nav>* {
         border: 1em solid red;
         box-shadow: 2px 2px 2px #cccccc;
 }
+
+
+/*Post Cards*/
 
 #post {
         display: flex;
@@ -71,10 +80,11 @@ nav>* {
         grid-area: "5";
 }
 
-/*
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 15px;
 
-        */
+/*Footer*/
 
+#footer { 
+        display: flex;
+        justify-content: center;
+        border: 1em solid yellow;
+}
