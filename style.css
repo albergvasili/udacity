@@ -1,90 +1,65 @@
-/* Stylesheet for homepage */
+/* STYLESHEET FOR HOMEPAGE */
 
 
-/*Header element*/
+/* HEADER ELEMENT */
 
-header {
-        font-size: 16pt;
-        font-family: Georgia;
-        color: #894;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-}
-
-h2 {
-        font-size: 0.8em;
-}
+@import "./styles/header.css";
 
 
-/*Navigation section*/
+/* NAVIGATION SECTION */
 
-#navigation {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        border: 1em solid blue;
-}
-
-nav>* {
-        flex-grow: 1;
-        border: 0.5em solid purple;
-        text-align: center;
+@import "./styles/navigation.css/";
 
 
-}
+/* FOOTER */
+
+@import "./styles/footer.css";
 
 
-.container {
-        border: 1em solid red;
-        box-shadow: 2px 2px 2px #cccccc;
-}
-
-
-/*Post Cards*/
-
-#post {
-        display: flex;
-        flex-direction: column;
-        border: 1em solid green;
-        padding: 0.5em;
-}
+/* POST CARDS */
 
 #post-cards {
         display: grid;
-        grid-template: repeat(3, 1fr);
-        grid-template-areas:
-        "1 2 3"
-        "4 5 6";
-
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+      
 }
 
 #post1 {
-        grid-area: "1";
+        grid-area: 1/1/2/2;
 }
 
 #post2 {
-        grid-area: "2";
+        grid-area: 1/2/2/3;
 }
 
 #post3 {
-        grid-area: "3";
+        grid-area: 1/3/2/4;
 }
 
 #post4 {
-        grid-area: "4";
+        grid-area: 2/1/3/2;
 }
 
 
 #post5 {
-        grid-area: "5";
+        grid-area: 2/2/3/3;
 }
 
+#post6 {
+        grid-area: 2/3/3/4;
+}
 
-/*Footer*/
-
-#footer { 
+.post-content {
         display: flex;
-        justify-content: center;
-        border: 1em solid yellow;
+        flex-direction: column;
+        justify-content: space-evenly;
+        border: 1em solid green;
+        padding: 0.5em;
+}
+
+.footer-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 }

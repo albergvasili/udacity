@@ -1,0 +1,23 @@
+/* NAVIGATION SECTION */
+
+#navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border: 1em solid blue;
+}
+
+nav>* {
+        flex-grow: 1;
+        border: 0.5em solid purple;
+        text-align: center;
+
+
+}
+
+
+.container {
+        border: 1em solid red;
+        box-shadow: 2px 2px 2px #cccccc;
+}
+
