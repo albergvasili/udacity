@@ -4,13 +4,11 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        border: 1em solid blue;
+        background-color: #121212;
 }
 
 nav>* {
         flex-grow: 1;
-        border: 0.5em solid purple;
         text-align: center;
-
-
+        color: #FFF;
 }

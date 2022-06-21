@@ -21,6 +21,11 @@
 @import "../styles/footer.css";
 
 
+/* TEXT AND BACKGROUND*/
+
+@import "../styles/text_background.css";
+
+
 /* MAIN CONTENT */
 
 #main-content {
@@ -46,6 +51,12 @@
         align-items: center;
 }
 
+.social-media-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+}
+        
 
 /*ALIGN PREVIOUS AND NEXT*/
 #post-footer {

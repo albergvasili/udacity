@@ -21,11 +21,20 @@
 @import "./styles/footer.css";
 
 
+/* TEXT AND BACKGROUND*/
+
+@import "./styles/text_background.css";
+
+
 /* POST CARDS */
 
 #post-cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+}
+
+img {
+        width: 100px;
 }
 
 #post1 {
@@ -56,8 +65,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        border: 1em solid green;
         padding: 0.5em;
+        border: 1px solid #FFF;
 }
 
 .footer-content {

@@ -1,7 +1,7 @@
 /* CONTAINERS */
 
 .container {
-        border: 1em solid red;
-        box-shadow: 2px 2px 2px #cccccc;
+        /*border: 0.25em solid #808080;*/
+        padding: 1em;
 }
 
