@@ -21,4 +21,35 @@
 @import "../styles/footer.css";
 
 
-/* POST CONTENT */
+/* MAIN CONTENT */
+
+#main-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+}
+
+#post {
+        grid-area: 1/1/4/3;
+        display: flex;
+        flex-direction: column;
+}
+
+#author-info {
+        grid-area: 1/3/3/4;
+}
+
+#social-sharing {
+        grid-area: 3/3/4/4;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+}
+
+
+/*ALIGN PREVIOUS AND NEXT*/
+#post-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+}
