@@ -34,7 +34,8 @@
 }
 
 img {
-        width: 100px;
+        width: 200px;
+        align-self: center;
 }
 
 #post1 {
