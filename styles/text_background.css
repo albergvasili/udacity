@@ -4,12 +4,18 @@
         background-color: #121212;
 }
 
+
 h1,
 h2,
 h3,
 h4,
+h5,
 p,
-.text,
 .sharing {
         color: #FFF;
+}
+
+
+.link {
+        color: #FF0;
 }

@@ -33,6 +33,11 @@
         grid-template-columns: repeat(3, 1fr);
 }
 
+#main-content>div {
+        border: 1px solid #FFF;
+}
+
+
 #post {
         grid-area: 1/1/4/3;
         display: flex;
@@ -51,12 +56,6 @@
         align-items: center;
 }
 
-.social-media-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-}
-        
 
 /*ALIGN PREVIOUS AND NEXT*/
 #post-footer {
