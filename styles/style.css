@@ -3,27 +3,27 @@
 
 /* HEADER ELEMENT */
 
-@import "./styles/header.css";
+@import "./header.css";
 
 
 /* CONTAINERS */
 
-@import "./styles/container.css";
+@import "./container.css";
 
 
 /* NAVIGATION SECTION */
 
-@import "./styles/navigation.css/";
+@import "./navigation.css/";
 
 
 /* FOOTER */
 
-@import "./styles/footer.css";
+@import "./footer.css";
 
 
 /* TEXT AND BACKGROUND*/
 
-@import "./styles/text_background.css";
+@import "./text_background.css";
 
 
 /* POST CARDS */
