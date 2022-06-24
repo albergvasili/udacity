@@ -34,6 +34,11 @@ img {
         align-self: center;
 }
 
+figcaption {
+        align-self: center;
+        padding: 8px;
+        color: #FF9;
+}
 
 .post-content {
         display: flex;
