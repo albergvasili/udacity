@@ -28,6 +28,18 @@
 
 /* POST CARDS */
 
+.post-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 0.5em;
+        border: 1px solid #FFF;
+}
+
+.post-content>* {
+        flex: 1 1 auto;
+}
+
 figure {
         display: flex;
         flex-direction: column;
@@ -37,6 +49,7 @@ figure {
 
 img {
         width: 200px;
+        height: 200px;
         flex: 1 1 auto;
 }
 
@@ -44,14 +57,6 @@ figcaption {
         flex: 1 1 auto;
         padding: 8px;
         color: #FF9;
-}
-
-.post-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        padding: 0.5em;
-        border: 1px solid #FFF;
 }
 
 .footer-content {
