@@ -28,14 +28,20 @@
 
 /* POST CARDS */
 
+figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
 
 img {
         width: 200px;
-        align-self: center;
+        flex: 1 1 auto;
 }
 
 figcaption {
-        align-self: center;
+        flex: 1 1 auto;
         padding: 8px;
         color: #FF9;
 }
