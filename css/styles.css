@@ -22,14 +22,30 @@
         flex: 1 1 auto;
         padding: 1em;
         list-style: none;
+        cursor: pointer;
         display: flex;
         justify-content: center;
+}
+
+a {
+        color: #000;
+        font-style: normal;
+        text-decoration: none;
+}
+
+.section-button:hover {
+        background-color: #499;
 }
 
 main {
         margin-top: 50px;
         padding: 1em;
         background-color: #7C9;
+}
+
+section {
+        margin: 1em;
+        padding: 1em;
 }
 
 .active {
