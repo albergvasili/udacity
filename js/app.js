@@ -1,19 +1,35 @@
 /* SCRIPT */
 
-let sections = document.querySelectorAll("section");
-const nav = document.querySelector("#nav-list");
 const fragment = document.createDocumentFragment();
+const nav = document.querySelector("#nav-list");
+let sections = document.querySelectorAll("section");
+
+function sectionId (index) {
+        /* Get section ID. */
+        let sectionId = `#section${index}`;
+        return sectionId;
+}
+
+function sectionTitle (index) {
+        /* Get section heading element title. */
+        let sectionNumber = document.querySelector(sectionId(index));
+        let sectionTitle = sectionNumber.firstElementChild;
+        return sectionTitle;
+}
+
+function buttonId (index) {
+        /* Get navigation bar button ID. */
+        let navButtonId = `#nav-section${index}`;
+        return navButtonId;
+}
 
 function createAnchorElement (index) {
         /* Create an anchor element based on section tags. */
 
-        let sectionId = `#section${index}`;
-        let sectionNumber = document.querySelector(sectionId);
-        let sectionTitle = sectionNumber.firstElementChild;
         const anchorElement = document.createElement("a");
 
-        anchorElement.setAttribute("href", sectionId);
-        anchorElement.innerText = sectionTitle.innerText;
+        anchorElement.setAttribute("href", sectionId(index));
+        anchorElement.innerText = sectionTitle(index).innerText;
 
         return anchorElement
 }
@@ -24,26 +40,30 @@ function createListItem (index) {
         const listItem = document.createElement("li");
 
         listItem.classList.add("section-button");
-        listItem.setAttribute("id", `nav-section${index}`);
+        listItem.setAttribute("id", buttonId(index));
 
         return listItem;
 }
 
+function append (index) {
+        /* Append list items and anchors to document fragment. */
 
-for (let index = 1; index <= sections.length; index++) {
-        
-        // Create and add sections to the navigation menu.
         let anchor = createAnchorElement(index);
         let list = createListItem(index);
 
         list.appendChild(anchor);
-        fragment.appendChild(list);
+        return fragment.appendChild(list);
 }
 
-nav.appendChild(fragment);
+        
+for (let i = 1; i <= sections.length; i++) {
+        
+        append(i);
+        nav.appendChild(fragment);
+}
 
+/* Scroll to a section by clicking on navigation bar buttons */
 
-/* Scroll to a section by cliking on navigation bar buttons */
 for (let i = 1; i <= 4; i++) {
         let sectionButton = document.querySelector(`#nav-section${i}`);
         let sectionNumber = document.querySelector(`#section${i}`)
@@ -59,6 +79,7 @@ for (let i = 1; i <= 4; i++) {
                 })
         });               
 }
+
 
 
 /* Change section class when it hits the top of the viewport */
