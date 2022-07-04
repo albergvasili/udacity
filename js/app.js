@@ -3,6 +3,7 @@
 const fragment = document.createDocumentFragment();
 const nav = document.querySelector("#nav-list");
 let sections = document.querySelectorAll("section");
+let sectionInfo = [];
 
 function sectionId (index) {
         /* Get section ID. */
@@ -55,14 +56,19 @@ function append (index) {
         return fragment.appendChild(list);
 }
 
+function sectionCoordinates () {
+        /* Get section size and position relative to the viewport. */
+        for (section of sections) {
+                let sectionCoordinate = section.getBoundingClientRect();
+                sectionInfo.push(sectionCoordinate);
+        }
+}
 
 function scrollToSection (index) {
         /* Click button in navigation bar to scroll to desired section. */
 
         let sectionButton = document.querySelector("#" + buttonId(index));
-        let sectionNumber = document.querySelector(sectionId(index));
-        let sectionCoordinates = sectionNumber.getBoundingClientRect();
-        let topOfSection = sectionCoordinates.top;
+        let topOfSection = sectionInfo[index - 1].top;
 
 
         sectionButton.addEventListener("click", function () {
@@ -76,15 +82,15 @@ function scrollToSection (index) {
 }
 
 function activeSection () {
-        /* Change section class when it hits the top of the viewport */
+        /* Change section class when it hits the top of the viewport. */
 
         window.addEventListener("scroll", function () {
                 for (section of sections) {
-                        let sectionCoordinates = section.getBoundingClientRect();
-                        let topOfSection = sectionCoordinates.top;
-                        let bottomOfSection = sectionCoordinates.bottom;
+                        let sectionCoo = section.getBoundingClientRect();
+                        let topOfSection = sectionCoo.top;
+                        let bottomOfSection = sectionCoo.bottom;
 
-                        if (topOfSection >= -sectionCoordinates.height +200 && bottomOfSection <= window.innerHeight + 350) {
+                        if (topOfSection >= (-sectionCoo.height + 200) && (bottomOfSection <= window.innerHeight + 350)) {
                                 section.classList.add("active");
                         } else {
                                 section.classList.remove("active");
@@ -100,6 +106,7 @@ for (let i = 1; i <= sections.length; i++) {
 }
 
 nav.appendChild(fragment);
+sectionCoordinates();
 
 
 for (let i = 1; i <= sections.length; i++) {
