@@ -1,28 +1,42 @@
 /* SCRIPT */
-//TODO: Add variable to set amount of sections.
-//TODO: Store sections in a variable.
 //TODO: Find a way to consolidate anchor and ul elements.
 
+
+let sections = document.querySelectorAll("section");
 const nav = document.querySelector("#nav-list");
 const fragment = document.createDocumentFragment();
 
-/* Create and add sections to the navigation menu */
-for (let i = 1; i <= 4; i++) {
-        let sectionNumber = document.querySelector(`#section${i}`)
+function createAnchorElement (index) {
+        let sectionId = `#section${index}`;
+        let sectionNumber = document.querySelector(sectionId);
         let sectionTitle = sectionNumber.firstElementChild;
-
-        const listItem = document.createElement("li");
-        listItem.classList.add("section-button");
-        listItem.setAttribute("id", `nav-section${i}`);
-
         const anchorElement = document.createElement("a");
-        anchorElement.setAttribute("href", `#section${i}`);
+
+        anchorElement.setAttribute("href", sectionId);
         anchorElement.innerText = sectionTitle.innerText;
 
-        listItem.appendChild(anchorElement);
+        return anchorElement
+}
 
-        fragment.appendChild(listItem);
-};
+function createListItem (index) {
+        const listItem = document.createElement("li");
+
+        listItem.classList.add("section-button");
+        listItem.setAttribute("id", `nav-section${index}`);
+
+        return listItem;
+}
+
+
+for (let index = 1; index <= sections.length; index++) {
+        
+        //Create and add sections to the navigation menu
+        let anchor = createAnchorElement(index);
+        let list = createListItem(index);
+
+        list.appendChild(anchor);
+        fragment.appendChild(list);
+}
 
 nav.appendChild(fragment);
 
@@ -42,11 +56,10 @@ for (let i = 1; i <= 4; i++) {
                         behavior: "smooth"
                 })
         });               
-};
+}
 
 
 /* Change section class when it hits the top of the viewport */
-let sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", function () {
         for (section of sections) {
@@ -54,7 +67,7 @@ window.addEventListener("scroll", function () {
                 let topOfSection = sectionCoordinates.top;
                 let bottomOfSection = sectionCoordinates.bottom;
 
-                if (topOfSection >= 0 && bottomOfSection >= window.innerHeight) {
+                if (topOfSection >= -sectionCoordinates.height +200 && bottomOfSection <= window.innerHeight + 350) {
                         section.classList.add("active");
                 } else {
                         section.classList.remove("active");
