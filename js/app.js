@@ -1,4 +1,7 @@
 /* SCRIPT */
+//TODO: Add variable to set amount of sections.
+//TODO: Store sections in a variable.
+//TODO: Find a way to consolidate anchor and ul elements.
 
 const nav = document.querySelector("#nav-list");
 const fragment = document.createDocumentFragment();
@@ -24,7 +27,7 @@ for (let i = 1; i <= 4; i++) {
 nav.appendChild(fragment);
 
 
-/* Scroll to section by cliking on navigation bar buttons */
+/* Scroll to a section by cliking on navigation bar buttons */
 for (let i = 1; i <= 4; i++) {
         let sectionButton = document.querySelector(`#nav-section${i}`);
         let sectionNumber = document.querySelector(`#section${i}`)
@@ -39,8 +42,24 @@ for (let i = 1; i <= 4; i++) {
                         behavior: "smooth"
                 })
         });               
-
-
-                
-
 };
+
+
+/* Change section class when it hits the top of the viewport */
+let sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", function () {
+        for (section of sections) {
+                let sectionCoordinates = section.getBoundingClientRect();
+                let topOfSection = sectionCoordinates.top;
+                let bottomOfSection = sectionCoordinates.bottom;
+
+                if (topOfSection >= 0 && bottomOfSection >= window.innerHeight) {
+                        section.classList.add("active");
+                } else {
+                        section.classList.remove("active");
+                }
+
+        }
+});
+
