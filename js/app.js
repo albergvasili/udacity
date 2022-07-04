@@ -19,7 +19,7 @@ function sectionTitle (index) {
 
 function buttonId (index) {
         /* Get navigation bar button ID. */
-        let navButtonId = `#nav-section${index}`;
+        let navButtonId = `nav-section${index}`;
         return navButtonId;
 }
 
@@ -55,18 +55,12 @@ function append (index) {
         return fragment.appendChild(list);
 }
 
-        
-for (let i = 1; i <= sections.length; i++) {
-        
-        append(i);
-        nav.appendChild(fragment);
-}
 
-/* Scroll to a section by clicking on navigation bar buttons */
+function scrollToSection (index) {
+        /* Click button in navigation bar to scroll to desired section. */
 
-for (let i = 1; i <= 4; i++) {
-        let sectionButton = document.querySelector(`#nav-section${i}`);
-        let sectionNumber = document.querySelector(`#section${i}`)
+        let sectionButton = document.querySelector("#" + buttonId(index));
+        let sectionNumber = document.querySelector(sectionId(index));
         let sectionCoordinates = sectionNumber.getBoundingClientRect();
         let topOfSection = sectionCoordinates.top;
 
@@ -78,24 +72,38 @@ for (let i = 1; i <= 4; i++) {
                         behavior: "smooth"
                 })
         });               
+
 }
 
+function activeSection () {
+        /* Change section class when it hits the top of the viewport */
 
+        window.addEventListener("scroll", function () {
+                for (section of sections) {
+                        let sectionCoordinates = section.getBoundingClientRect();
+                        let topOfSection = sectionCoordinates.top;
+                        let bottomOfSection = sectionCoordinates.bottom;
 
-/* Change section class when it hits the top of the viewport */
+                        if (topOfSection >= -sectionCoordinates.height +200 && bottomOfSection <= window.innerHeight + 350) {
+                                section.classList.add("active");
+                        } else {
+                                section.classList.remove("active");
+                        }
 
-window.addEventListener("scroll", function () {
-        for (section of sections) {
-                let sectionCoordinates = section.getBoundingClientRect();
-                let topOfSection = sectionCoordinates.top;
-                let bottomOfSection = sectionCoordinates.bottom;
-
-                if (topOfSection >= -sectionCoordinates.height +200 && bottomOfSection <= window.innerHeight + 350) {
-                        section.classList.add("active");
-                } else {
-                        section.classList.remove("active");
                 }
+        });
+}
 
-        }
-});
+for (let i = 1; i <= sections.length; i++) {
+        
+        append(i);
+}
 
+nav.appendChild(fragment);
+
+
+for (let i = 1; i <= sections.length; i++) {
+        scrollToSection(i);
+}
+
+activeSection();
