@@ -1,12 +1,12 @@
 /* SCRIPT */
-//TODO: Find a way to consolidate anchor and ul elements.
-
 
 let sections = document.querySelectorAll("section");
 const nav = document.querySelector("#nav-list");
 const fragment = document.createDocumentFragment();
 
 function createAnchorElement (index) {
+        /* Create an anchor element based on section tags. */
+
         let sectionId = `#section${index}`;
         let sectionNumber = document.querySelector(sectionId);
         let sectionTitle = sectionNumber.firstElementChild;
@@ -19,6 +19,8 @@ function createAnchorElement (index) {
 }
 
 function createListItem (index) {
+        /* Create li element for the navigation bar. */
+
         const listItem = document.createElement("li");
 
         listItem.classList.add("section-button");
@@ -30,7 +32,7 @@ function createListItem (index) {
 
 for (let index = 1; index <= sections.length; index++) {
         
-        //Create and add sections to the navigation menu
+        // Create and add sections to the navigation menu.
         let anchor = createAnchorElement(index);
         let list = createListItem(index);
 
