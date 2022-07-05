@@ -90,7 +90,7 @@ function activeSection () {
                         let topOfSection = sectionCoo.top;
                         let bottomOfSection = sectionCoo.bottom;
 
-                        if (topOfSection >= (-sectionCoo.height + 200) && (bottomOfSection <= window.innerHeight + 350)) {
+                        if (topOfSection <= 100 && bottomOfSection >= 100) {
                                 section.classList.add("active");
                         } else {
                                 section.classList.remove("active");
