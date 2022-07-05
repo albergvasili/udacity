@@ -30,6 +30,8 @@ function createAnchorElement (index) {
         const anchorElement = document.createElement("a");
 
         anchorElement.setAttribute("href", sectionId(index));
+        anchorElement.setAttribute("id", buttonId(index));
+        anchorElement.classList.add("section-button");
         anchorElement.innerText = sectionTitle(index).innerText;
 
         return anchorElement
@@ -39,10 +41,7 @@ function createListItem (index) {
         /* Create li element for the navigation bar. */
 
         const listItem = document.createElement("li");
-
-        listItem.classList.add("section-button");
-        listItem.setAttribute("id", buttonId(index));
-
+        listItem.classList.add("button-container");
         return listItem;
 }
 
@@ -71,7 +70,8 @@ function scrollToSection (index) {
         let topOfSection = sectionInfo[index - 1].top;
 
 
-        sectionButton.addEventListener("click", function () {
+        sectionButton.addEventListener("click", function (event) {
+                event.preventDefault();
                 scrollTo({
                         top: topOfSection - 50,
                         left: 0,
