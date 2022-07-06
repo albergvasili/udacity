@@ -14,7 +14,7 @@
         margin: 0;
         padding: 0;
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
 }
 
 .button-container {
@@ -47,7 +47,7 @@ section {
 }
 
 .active {
-        background-color: yellow;
+        background-color: #AD97;
 
 }
 
@@ -94,4 +94,3 @@ section {
         }
 
 }
-

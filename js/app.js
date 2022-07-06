@@ -77,7 +77,7 @@ function scrollToSection (index) {
                         left: 0,
                         behavior: "smooth"
                 })
-        });               
+        });
 
 }
 
@@ -101,13 +101,11 @@ function activeSection () {
 }
 
 for (let i = 1; i <= sections.length; i++) {
-        
         append(i);
 }
 
 nav.appendChild(fragment);
 sectionCoordinates();
-
 
 for (let i = 1; i <= sections.length; i++) {
         scrollToSection(i);
