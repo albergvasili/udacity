@@ -13,10 +13,30 @@ const cors = require("cors");
 app.use(cors());
 
 /* Initialize main project folder */
-//app.use(express.static("app"));
+app.use(express.static("app"));
 
 /* Create Server */
 const port = 2001;
 const server = app.listen(port, () => {
         console.log(`running on localhost: ${port}`);
+});
+
+/* Routes */
+const data = [];
+
+app.get("/get", (req, res) => {
+        res.send(data);
+        console.log("testing");
+});
+
+app.post("/post", (req, res) => {
+        let newData = req.body;
+        let newEntry = {
+                temperature: newData.temperature,
+                date: newData.date,
+                response: newData.response
+        }
+
+        data.push(newEntry);
+        console.log(data);
 });
