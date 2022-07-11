@@ -3,24 +3,28 @@
 <head>
         <meta charset="UTF-8">
         <title>Weather App</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="app.js" defer></script>
 </head>
 <body>
         <header>
                 <h1>Weather App</h1>
         </header>
         <main>
-                <form action="">
-                        <div>
-                                <label for="zip">Zipcode:</label>
-
-                                <input id="zip" type="">
+                <form method="get">
+                        <div class="container">
+                                <label for="zip">Zipcode</label>
+                                <input id="zip" type="text" name="zipcode" 
+                                        placeholder="Enter zipcode">
                         </div>
-                        <div>
-                                <label for="feelings">Feelings:</label>
+                        <div class="container">
+                                <label for="feelings">Feelings</label>
+                                <textarea id="feelings" 
+                                        placeholder="How are you feeling ?"
+                                        cols="25" rows="5"></textarea>
 
-                                <textarea id="feelings" name="" cols="30" rows="10"></textarea>
                         </div>
-                        <button></button>
+                        <button id="generate">Go</button>
                 </form>
         </main>   
 </body>
