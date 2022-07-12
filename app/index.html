@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <title>Weather App</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="app.js" defer></script>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
-        <header>
-                <h1>Weather App</h1>
-        </header>
-        <main>
-                <form method="get">
-                        <div class="container">
-                                <label for="zip">Zipcode</label>
-                                <input id="zip" type="text" name="zipcode" 
-                                        placeholder="Enter zipcode">
-                        </div>
-                        <div class="container">
-                                <label for="feelings">Feelings</label>
-                                <textarea id="feelings" 
-                                        placeholder="How are you feeling ?"
-                                        cols="25" rows="5"></textarea>
-
-                        </div>
-                        <input type="button" id="generate" value="Go">
-                </form>
-        </main>   
+     <h1>Weather App</h1>
+     <main>
+          <section id="form">
+              <form method="get">
+                  <div class="container">
+                      <label for="zip">Zipcode</label>
+                      <input id="zip" type="text" name="zipcode" 
+                                 placeholder="Enter zipcode">
+                  </div>
+                  <div class="container">
+                       <label for="feelings">Feelings</label>
+                       <textarea id="feelings" 
+                           placeholder="How are you feeling ?"
+                           cols="25" rows="5"></textarea>
+                  </div>
+                      <input type="button" id="generate" value="Go">
+              </form>
+          </section>   
+    </main>
 </body>
 </html>
