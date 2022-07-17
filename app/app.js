@@ -23,22 +23,7 @@ function performAction() {
 
 }
 
-const updateUI = async () => {
-        const req = await fetch("/");
-
-        try {
-                const allData = await req.json();
-                document.getElementById("temperature").innerHTML =
-                        allData.temperature;
-                document.getElementById("date").innerHTML =
-                        allData.date;
-                document.getElementById("insert-feeling") =
-                        allData.response;
-        } catch(error) {
-                console.log("error", error);
-        }
-};
-
+/* Get weather from API */
 const getWeather = async (baseURL, zip, key, unit) => {
         const res = await fetch(baseURL+zip+key+unit);
 
@@ -71,4 +56,19 @@ const postData = async (url = "", data = {}) => {
         }
 };
 
+/* Update UI */ 
+const updateUI = async () => {
+        const req = await fetch("/");
 
+        try {
+                const allData = await req.json();
+                document.getElementById("temperature").innerHTML =
+                        allData.temperature;
+                document.getElementById("date").innerHTML =
+                        allData.date;
+                document.getElementById("insert-feeling").innerHTML =
+                        allData.response;
+        } catch(error) {
+                console.log("error", error);
+        }
+};
