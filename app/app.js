@@ -63,11 +63,11 @@ const updateUI = async () => {
         try {
                 const allData = await req.json();
                 document.getElementById("temperature").innerHTML =
-                        allData[0].temperature;
+                        allData.temperature + "°F";
                 document.getElementById("date").innerHTML =
-                        allData[0].date;
+                        allData.date;
                 document.getElementById("insert-feeling").innerHTML =
-                        allData[0].response;
+                        allData.response;
         } catch(error) {
                 console.log("error", error);
         }

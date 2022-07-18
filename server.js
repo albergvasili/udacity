@@ -22,10 +22,10 @@ const server = app.listen(port, () => {
 });
 
 /* Routes */
-const data = [];
+let projectData = {};
 
 app.get("/get", (req, res) => {
-        res.send(data);
+        res.send(projectData);
         console.log("testing");
 });
 
@@ -37,6 +37,6 @@ app.post("/post", (req, res) => {
                 response: newData.response
         }
 
-        data.push(newEntry);
+        projectData = newEntry;
         console.log(data);
 });
