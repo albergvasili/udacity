@@ -13,7 +13,7 @@ const cors = require("cors");
 app.use(cors());
 
 /* Initialize main project folder */
-app.use(express.static("app"));
+app.use(express.static("dist"));
 
 /* Create Server */
 const port = 2001;
