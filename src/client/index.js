@@ -1,6 +1,6 @@
 /* Web API */
 import './styles/style.scss';
-const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
+const baseURL = "api.geonames.org/searchJSON?q=paris&username=demo";
 const apiKey = "&appid=";
 const unit = "&units=imperial";
 const button = document.getElementById("generate");
