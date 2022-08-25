@@ -4,6 +4,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 new WorkboxPlugin.GenerateSW();
 
 module.exports = {
+        mode: 'production',
         entry: './src/client/index.js',
         output: {
                 libraryTarget: 'var',
