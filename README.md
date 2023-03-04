@@ -2,5 +2,5 @@
 Udacity's Nanodegree: Intermediate Python
 
 ### Projects:
-- `near_earth_objects`
-- `meme_generator`
+- near\_earth\_objects
+- meme\_generator
