@@ -1,0 +1,13 @@
+/* NAVIGATION SECTION */
+
+#navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #121212;
+}
+
+nav>* {
+        flex-grow: 1;
+        text-align: center;
+}

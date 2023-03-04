@@ -1,0 +1,17 @@
+/* HEADER */
+
+
+header {
+        font-size: 16pt;
+        font-family: Georgia;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+
+h2 {
+        font-size: 1em;
+}
+
+

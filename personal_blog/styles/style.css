@@ -1,0 +1,148 @@
+/* STYLESHEET FOR HOMEPAGE */
+
+
+/* HEADER ELEMENT */
+
+@import "./header.css";
+
+
+/* CONTAINERS */
+
+@import "./container.css";
+
+
+/* NAVIGATION SECTION */
+
+@import "./navigation.css/";
+
+
+/* FOOTER */
+
+@import "./footer.css";
+
+
+/* TEXT AND BACKGROUND*/
+
+@import "./text_background.css";
+
+
+/* POST CARDS */
+
+.post-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 0.5em;
+        border: 1px solid #FFF;
+}
+
+.post-content>* {
+        flex: 1 1 auto;
+}
+
+figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+
+img {
+        width: 200px;
+        height: 200px;
+        flex: 1 1 auto;
+}
+
+figcaption {
+        flex: 1 1 auto;
+        padding: 8px;
+        color: #FF9;
+}
+
+.footer-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+}
+
+
+/* BREAKPOINTS */
+
+  /* MOBILE LAYOUT */
+
+@media (min-width: 320px) {
+
+        #post-cards {
+                display: flex;
+                flex-direction: column;
+        }
+}
+
+
+  /* TABLET LAYOUT */
+
+@media (min-width: 600px) {
+
+        #post-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+        }
+
+        #post1 {
+                grid-area: 1/1/2/2;
+        }
+
+        #post2 {
+                grid-area: 1/2/2/3;
+        }
+
+        #post3 {
+                grid-area: 2/1/3/2;
+        }
+
+        #post4 {
+                grid-area: 2/2/3/3;
+        }
+        
+        #post5 {
+                grid-area: 3/1/4/2;
+        }
+
+        #post6 {
+                grid-area: 3/2/4/3;
+        }
+}
+
+
+  /* DESKTOP LAYOUT */
+
+@media (min-width: 800px) {
+
+        #post-cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+        }
+
+        #post1 {
+                grid-area: 1/1/2/2;
+        }
+
+        #post2 {
+                grid-area: 1/2/2/3;
+        }
+
+        #post3 {
+                grid-area: 1/3/2/4;
+        }
+
+        #post4 {
+                grid-area: 2/1/3/2;
+        }
+
+        #post5 {
+                grid-area: 2/2/3/3;
+        }
+
+        #post6 {
+                grid-area: 2/3/3/4;
+        }
