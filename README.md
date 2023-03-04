@@ -2,7 +2,7 @@
 Udacity's Nanodegree: Intro to programming
 
 ### Projects:
-- `adventure_game`
-- `rock_paper_scissors`
-- `pixel_art`
+- adventure\_game
+- rock\_paper\_scissors
+- pixel\_art
 
